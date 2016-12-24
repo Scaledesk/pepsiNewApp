@@ -1,0 +1,103 @@
+<style>
+    .disabled {
+        pointer-events: none;
+    }
+</style>
+
+<div class="content-section-a">
+    <div class="container">
+
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+                <h4>Course 1</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                    <div class="list-group">
+                        <a href="" id="tab1" class="list-group-item active text-center" ng-click="tab='first'">
+                 Module 1
+                </a>
+                        <a href="" id="tab2" class="list-group-item text-center" ng-class="{'disabled':!compelete_module1}" ng-click="tab='second'">
+                  Module 2
+                </a>
+                        <a href="" id="tab3" class="list-group-item text-center" ng-class="{'disabled':!compelete_module2}" ng-click="tab='third'">
+                  Module 3
+                </a>
+                        <a href="" id="tab4" class="list-group-item text-center" ng-class="{'disabled':!compelete_module3}" ng-click="tab='fourth'">
+                  Module 4
+                </a>
+                        <a href="" id="tab5" class="list-group-item text-center" ng-class="{'disabled':!compelete_module4}" ng-click="tab='fifth'">
+                  Module 5
+                </a>
+                    </div>
+                </div>
+
+                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9" style="background:#fff;">
+
+                    <div ng-show="tab=='first'">
+                        <div class="row">
+                            <div class="col-md-8 col-md-offset-1">
+                                <video class="border" id="module1" name="module1" width="auto" height="400px" poster="http://pepsicodemo.scaledesk.com/pepsico-demo/img/video-preview.png" controls="">
+                                <source src="http://pepsico.scaledesk.com/gitvid/Board%20Room.mp4" type="video/mp4">
+                              </video>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div ng-show="tab=='second'">
+                        <div class="row">
+                            <div class="col-md-8 col-md-offset-1">
+                                <video class="border" id="module2" name="module2" width="auto" height="400px" poster="http://pepsicodemo.scaledesk.com/pepsico-demo/img/video-preview.png" controls="">
+                                <source src="http://pepsico.scaledesk.com/gitvid/Board%20Room.mp4" type="video/mp4">
+                              </video>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div ng-show="tab=='third'">
+                        <div class="row">
+                            <div class="col-md-8 col-md-offset-1">
+                                <video class="border" id="module3" name="module3" width="auto" height="400px" poster="http://pepsicodemo.scaledesk.com/pepsico-demo/img/video-preview.png" controls="">
+                                <source src="http://pepsico.scaledesk.com/gitvid/Board%20Room.mp4" type="video/mp4">
+                              </video>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div ng-show="tab=='fourth'">
+                        <div class="row">
+                            <div class="col-md-8 col-md-offset-1">
+                                <video class="border" id="module4" name="module4" width="auto" height="400px" poster="http://pepsicodemo.scaledesk.com/pepsico-demo/img/video-preview.png" controls="">
+                                <source src="http://pepsico.scaledesk.com/gitvid/Board%20Room.mp4" type="video/mp4">
+                              </video>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div ng-show="tab=='fifth'">
+                        <div class="row">
+                            <div class="col-md-8 col-md-offset-1">
+                                <video class="border" id="module5" name="module5" width="auto" height="400px" poster="http://pepsicodemo.scaledesk.com/pepsico-demo/img/video-preview.png" controls="">
+                                <source src="http://pepsico.scaledesk.com/gitvid/Board%20Room.mp4" type="video/mp4">
+                              </video>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $("div.list-group>a").click(function(e) {
+        e.preventDefault();
+        $(this).siblings('a.active').removeClass("active");
+        $(this).addClass("active");
+    });
+</script>

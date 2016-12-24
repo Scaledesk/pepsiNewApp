@@ -1,0 +1,96 @@
+
+<style>
+  .disabled{
+    pointer-events: none;
+  }
+</style>
+<div class="content-section-a">
+<div class="container">
+    <div class="row">
+       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+          <h4>Course 2</h4>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">       
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+              <div class="list-group">
+                <a href="" class="list-group-item active text-center" ng-click="tab='first'">
+                 Module 1
+                </a>
+                <a href="" class="list-group-item text-center" ng-class="{'disabled':!compelete_module1}" ng-click="tab='second'">
+                  Module 2
+                </a>
+                <a href="" class="list-group-item text-center" ng-class="{'disabled':!compelete_module2}" ng-click="tab='third'">
+                  Module 3
+                </a>
+                <a href="" class="list-group-item text-center" ng-class="{'disabled':!compelete_module3}" ng-click="tab='fourth'">
+                  Module 4
+                </a>
+                <a href="" class="list-group-item text-center" ng-class="{'disabled':!compelete_module4}" ng-click="tab='fifth'">
+                  Module 5
+                </a>
+              </div>
+            </div>  
+            
+            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9" style="background:#fff;">
+                
+                <div ng-show="tab=='first'">
+                      <div class="row">
+                          <div class="col-md-8 col-md-offset-1">
+                              <video class="border" width="auto" height="400px" poster="http://pepsicodemo.scaledesk.com/pepsico-demo/img/video-preview.png" controls="">
+                                <source src="http://pepsico.scaledesk.com/gitvid/Board%20Room.mp4" type="video/mp4">
+                              </video>
+                          </div>
+                      </div>
+                </div>
+
+
+                <div ng-show="tab=='second'">
+                    <center>
+                      <h1 style="color:#55518a">Second Tab</h1>
+                      <h2 style="margin-top: 0;color:#55518a">Cooming Soon</h2>
+                      <h3 style="margin-top: 0;color:#55518a">Flight Reservation</h3>
+                    </center>
+                </div>
+
+                <div ng-show="tab=='third'">
+                    <center>
+                      <h1 style="color:#55518a">Third Tab</h1>
+                      <h2 style="margin-top: 0;color:#55518a">Cooming Soon</h2>
+                      <h3 style="margin-top: 0;color:#55518a">Flight Reservation</h3>
+                    </center>
+                </div>
+
+                <div ng-show="tab=='fourth'">
+                    <center>
+                      <h1 style="color:#55518a">Fourth Tab</h1>
+                      <h2 style="margin-top: 0;color:#55518a">Cooming Soon</h2>
+                      <h3 style="margin-top: 0;color:#55518a">Flight Reservation</h3>
+                    </center>
+                </div>
+
+                <div ng-show="tab=='fifth'">
+                    <center>
+                      <h1 style="color:#55518a">Fifth Tab</h1>
+                      <h2 style="margin-top: 0;color:#55518a">Cooming Soon</h2>
+                      <h3 style="margin-top: 0;color:#55518a">Flight Reservation</h3>
+                    </center>
+                </div>
+
+                
+
+            </div>
+        </div>
+
+  </div>
+</div>
+</div>
+<script>
+  $("div.list-group>a").click(function(e) {
+        e.preventDefault();
+        $(this).siblings('a.active').removeClass("active");
+        $(this).addClass("active");
+    });
+</script>
