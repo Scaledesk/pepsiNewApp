@@ -39,7 +39,12 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand topnav">Welcome {{name}}</a>
+                <a ng-show=idemp class="navbar-brand topnav">Welcome {{name}}</a>
+
+            </div>
+            <div ng-show=idemp ng-controller="HomeCtrl" class="pull-right">
+                <button ng-click="logout();" >Logout</button>
+
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">

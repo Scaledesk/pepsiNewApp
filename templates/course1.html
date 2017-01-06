@@ -16,19 +16,19 @@
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
                     <div class="list-group">
-                        <a href="" id="tab1" class="list-group-item active text-center" ng-click="tab='first'">
-                 Module 1
+                        <a href="" id="tab1" class="list-group-item active text-center" ng-click="tab='first';chkstatus(1);">
+                  Module 1
                 </a>
-                        <a href="" id="tab2" class="list-group-item text-center" ng-class="{'disabled':!compelete_module1}" ng-click="tab='second'">
+                        <a href="" id="tab2" class="list-group-item text-center  " ng-class="{'disabled':!compelete_module1}" ng-click="tab='second';chkstatus(2);">
                   Module 2
                 </a>
-                        <a href="" id="tab3" class="list-group-item text-center" ng-class="{'disabled':!compelete_module2}" ng-click="tab='third'">
+                        <a href="" id="tab3" class="list-group-item text-center " ng-class="{'disabled':!compelete_module2}" ng-click="tab='third';chkstatus(3);">
                   Module 3
                 </a>
-                        <a href="" id="tab4" class="list-group-item text-center" ng-class="{'disabled':!compelete_module3}" ng-click="tab='fourth'">
+                        <a href="" id="tab4" class="list-group-item text-center" ng-class="{'disabled':!compelete_module3}" ng-click="tab='fourth';chkstatus(4);">
                   Module 4
                 </a>
-                        <a href="" id="tab5" class="list-group-item text-center" ng-class="{'disabled':!compelete_module4}" ng-click="tab='fifth'">
+                        <a href="" id="tab5" class="list-group-item text-center" ng-class="{'disabled':!compelete_module4}" ng-click="tab='fifth';chkstatus(5);">
                   Module 5
                 </a>
                     </div>
@@ -40,10 +40,59 @@
                         <div class="row">
                             <div class="col-md-8 col-md-offset-1">
                                 <video class="border" id="module1" name="module1" width="auto" height="400px" poster="http://pepsicodemo.scaledesk.com/pepsico-demo/img/video-preview.png" controls="">
-                                <source src="http://pepsico.scaledesk.com/gitvid/Board%20Room.mp4" type="video/mp4">
+                                    <source src="http://pepsico.scaledesk.com/gitvid/Board%20Room.mp4" type="video/mp4">
                               </video>
+
                             </div>
+
+
                         </div>
+
+
+
+
+                        <div class="row" ng-show="m1ques_active || compelete_module1" >
+                        <!--<div class="row"  >-->
+
+                            <form ng-submit="submitanswer(submit_answer,questionformValid,1)" name="questionform" novalidate  >
+
+
+                            <div ng-repeat="question in questions" class="col-md-8 col-md-offset-1" style="margin-top: 20px;">
+                                <p>Question - {{$index+1}}</p>
+                                <p>{{question.ques}}</p>
+
+                                <span></span><input type="radio" name="q{{$index+1}}" ng-model="submit_answer[$index+1]" value="a" required>{{question.a}}<br>
+                                <span></span><input type="radio" name="q{{$index+1}}" ng-model="submit_answer[$index+1]" value="b" required>{{question.b}}<br>
+                                <span></span><input type="radio" name="q{{$index+1}}" ng-model="submit_answer[$index+1]" value="c" required>{{question.c}}<br>
+                                <span></span><input type="radio" name="q{{$index+1}}" ng-model="submit_answer[$index+1]" value="d" required>{{question.d}}<br>
+
+                                <small style="color: darkred" ng-show="!q{{$index+1}}_response && valid && submitted ">Wrong Answer</small>
+
+
+                                <small style="color: darkred" ng-show="questionform.q{{$index+1}}.$invalid && submitted ">* Please answer this question</small>
+
+                            </div>
+
+                                <span style="display:none" >{{ questionformValid = questionform.$valid}}</span>
+
+
+                                <button type="submit" class="btn btn-primary">Submit</button>
+
+                            </form>
+
+                        </div>
+
+
+
+
+
+
+
+
+
+
+
+
                     </div>
 
 
@@ -51,10 +100,51 @@
                         <div class="row">
                             <div class="col-md-8 col-md-offset-1">
                                 <video class="border" id="module2" name="module2" width="auto" height="400px" poster="http://pepsicodemo.scaledesk.com/pepsico-demo/img/video-preview.png" controls="">
-                                <source src="http://pepsico.scaledesk.com/gitvid/Board%20Room.mp4" type="video/mp4">
+                                    <source src="http://pepsico.scaledesk.com/gitvid/Board%20Room.mp4" type="video/mp4">
+
                               </video>
                             </div>
                         </div>
+
+
+
+                        <div class="row" ng-show="m2ques_active || compelete_module2" >
+                            <!--<div class="row"  >-->
+
+                            <form ng-submit="submitanswer(submit_answer,questionformValid,2)" name="questionform" novalidate  >
+
+
+                                <div ng-repeat="question in questions" class="col-md-8 col-md-offset-1" style="margin-top: 20px;">
+                                    <p>Question - {{$index+1}}</p>
+                                    <p>{{question.ques}}</p>
+
+                                    <span></span><input type="radio" name="q{{$index+1}}" ng-model="submit_answer[$index+1]" value="a" required>{{question.a}}<br>
+                                    <span></span><input type="radio" name="q{{$index+1}}" ng-model="submit_answer[$index+1]" value="b" required>{{question.b}}<br>
+                                    <span></span><input type="radio" name="q{{$index+1}}" ng-model="submit_answer[$index+1]" value="c" required>{{question.c}}<br>
+                                    <span></span><input type="radio" name="q{{$index+1}}" ng-model="submit_answer[$index+1]" value="d" required>{{question.d}}<br>
+
+                                    <small style="color: darkred" ng-show="!q{{$index+1}}_response && valid && submitted ">Wrong Answer</small>
+
+
+                                    <small style="color: darkred" ng-show="questionform.q{{$index+1}}.$invalid && submitted ">* Please answer this question</small>
+
+                                </div>
+
+                                <span style="display:none" >{{ questionformValid = questionform.$valid}}</span>
+
+
+                                <button type="submit" class="btn btn-primary">Submit</button>
+
+                            </form>
+
+                        </div>
+
+
+
+
+
+
+
                     </div>
 
                     <div ng-show="tab=='third'">
@@ -65,6 +155,42 @@
                               </video>
                             </div>
                         </div>
+
+
+
+
+
+                        <div class="row" ng-show="m3ques_active ||compelete_module3" >
+                            <!--<div class="row"  >-->
+
+                            <form ng-submit="submitanswer(submit_answer,questionformValid,3)" name="questionform" novalidate  >
+
+
+                                <div ng-repeat="question in questions" class="col-md-8 col-md-offset-1" style="margin-top: 20px;">
+                                    <p>Question - {{$index+1}}</p>
+                                    <p>{{question.ques}}</p>
+
+                                    <span></span><input type="radio" name="q{{$index+1}}" ng-model="submit_answer[$index+1]" value="a" required>{{question.a}}<br>
+                                    <span></span><input type="radio" name="q{{$index+1}}" ng-model="submit_answer[$index+1]" value="b" required>{{question.b}}<br>
+                                    <span></span><input type="radio" name="q{{$index+1}}" ng-model="submit_answer[$index+1]" value="c" required>{{question.c}}<br>
+                                    <span></span><input type="radio" name="q{{$index+1}}" ng-model="submit_answer[$index+1]" value="d" required>{{question.d}}<br>
+
+                                    <small style="color: darkred" ng-show="!q{{$index+1}}_response && valid && submitted ">Wrong Answer</small>
+
+
+                                    <small style="color: darkred" ng-show="questionform.q{{$index+1}}.$invalid && submitted ">* Please answer this question</small>
+
+                                </div>
+
+                                <span style="display:none" >{{ questionformValid = questionform.$valid}}</span>
+
+
+                                <button type="submit" class="btn btn-primary">Submit</button>
+
+                            </form>
+
+                        </div>
+
                     </div>
 
                     <div ng-show="tab=='fourth'">
@@ -75,6 +201,42 @@
                               </video>
                             </div>
                         </div>
+
+
+                        <div class="row" ng-show="m4ques_active ||compelete_module4" >
+                            <!--<div class="row"  >-->
+
+                            <form ng-submit="submitanswer(submit_answer,questionformValid,4)" name="questionform" novalidate  >
+
+
+                                <div ng-repeat="question in questions" class="col-md-8 col-md-offset-1" style="margin-top: 20px;">
+                                    <p>Question - {{$index+1}}</p>
+                                    <p>{{question.ques}}</p>
+
+                                    <span></span><input type="radio" name="q{{$index+1}}" ng-model="submit_answer[$index+1]" value="a" required>{{question.a}}<br>
+                                    <span></span><input type="radio" name="q{{$index+1}}" ng-model="submit_answer[$index+1]" value="b" required>{{question.b}}<br>
+                                    <span></span><input type="radio" name="q{{$index+1}}" ng-model="submit_answer[$index+1]" value="c" required>{{question.c}}<br>
+                                    <span></span><input type="radio" name="q{{$index+1}}" ng-model="submit_answer[$index+1]" value="d" required>{{question.d}}<br>
+
+                                    <small style="color: darkred" ng-show="!q{{$index+1}}_response && valid && submitted ">Wrong Answer</small>
+
+
+                                    <small style="color: darkred" ng-show="questionform.q{{$index+1}}.$invalid && submitted ">* Please answer this question</small>
+
+                                </div>
+
+                                <span style="display:none" >{{ questionformValid = questionform.$valid}}</span>
+
+
+                                <button type="submit" class="btn btn-primary">Submit</button>
+
+                            </form>
+
+                        </div>
+
+
+
+
                     </div>
 
                     <div ng-show="tab=='fifth'">
@@ -85,6 +247,42 @@
                               </video>
                             </div>
                         </div>
+
+
+
+                        <div class="row" ng-show="m5ques_active" >
+                            <!--<div class="row"  >-->
+
+                            <form ng-submit="submitanswer(submit_answer,questionformValid,5)" name="questionform" novalidate  >
+
+
+                                <div ng-repeat="question in questions" class="col-md-8 col-md-offset-1" style="margin-top: 20px;">
+                                    <p>Question - {{$index+1}}</p>
+                                    <p>{{question.ques}}</p>
+
+                                    <span></span><input type="radio" name="q{{$index+1}}" ng-model="submit_answer[$index+1]" value="a" required>{{question.a}}<br>
+                                    <span></span><input type="radio" name="q{{$index+1}}" ng-model="submit_answer[$index+1]" value="b" required>{{question.b}}<br>
+                                    <span></span><input type="radio" name="q{{$index+1}}" ng-model="submit_answer[$index+1]" value="c" required>{{question.c}}<br>
+                                    <span></span><input type="radio" name="q{{$index+1}}" ng-model="submit_answer[$index+1]" value="d" required>{{question.d}}<br>
+
+                                    <small style="color: darkred" ng-show="!q{{$index+1}}_response && valid && submitted ">Wrong Answer</small>
+
+
+                                    <small style="color: darkred" ng-show="questionform.q{{$index+1}}.$invalid && submitted ">* Please answer this question</small>
+
+                                </div>
+
+                                <span style="display:none" >{{ questionformValid = questionform.$valid}}</span>
+
+
+                                <button type="submit" class="btn btn-primary">Submit</button>
+
+                            </form>
+
+                        </div>
+
+
+
                     </div>
 
 
