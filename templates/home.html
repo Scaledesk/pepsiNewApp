@@ -8,19 +8,25 @@
                             <hr class="intro-divider">
 
                             <div style="padding-left:30%;padding-right:30%;text-align:left !important;">
-                                <form ng-submit="loginemp(user)">
+                                <form name="login_form" ng-submit="loginemp(user)" novalidate>
                                     <div class="form-group">
-                                        <label for="name">Name:</label>
-                                        <input type="text" ng-model="user.name" class="form-control" id="name" required>
+                                        <label for="name">Name<span ng-show="login_form.eid.$invalid && submitted" style="color: red">*</span>:</label>
+                                        <input type="text" id="uname" name="uname" ng-model="user.name" class="form-control" id="name" maxlength="20" required>
                                     </div>
+                                    <small style="color: red" ng-show="login_form.uname.$invalid && submitted">Name is required</small>
+
 
                                     <div class="form-group">
-                                        <label for="empid">Employee ID:</label>
-                                        <input type="text" ng-model="user.empid" class="form-control" id="empid" required>
+                                        <label for="empid">Employee ID<span ng-show="login_form.eid.$invalid && submitted" style="color: red">*</span>:</label>
+                                        <input type="text" id="eid" name="eid" ng-model="user.empid" class="form-control" id="empid" maxlength="20" required>
                                     </div>
+                                    <small style="color:red" ng-show="login_form.eid.$invalid && submitted">Employee ID is required</small>
 
-                                    <button type="submit" class="btn btn-primary">Submit</button>
-                                </form> 
+
+                                    <span style="display:none" >{{ user.loginForm = login_form.$valid}}</span>
+
+                                      <div  class="text-center"><button style="height:40px;width:70px;font-size: medium" type="submit" class="btn btn-primary">Login</button></div>
+                                </form>
                             </div>
 
                             <!--<ul class="list-inline intro-social-buttons">

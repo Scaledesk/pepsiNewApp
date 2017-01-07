@@ -63,85 +63,94 @@ app.controller('HomeCtrl', function($scope, $rootScope, $location, $localStorage
 
     }
 
+    $scope.submitted=false;
 
     $scope.loginemp=function(user){
 
-        $scope.logdata = {
-            emp_name: user.name,
-            emp_id: user.empid
+        $scope.submitted=true;
+
+
+
+        if (user.loginForm) {
+
+            $scope.logdata = {
+                emp_name: user.name,
+                emp_id: user.empid
+            };
+
+            pepsiservice.doLogin($scope.logdata).then(function (res) {
+
+                $localStorage.name = user.name;
+                $localStorage.empid = res.data.data.emp_id;
+                $localStorage.c1_currentmodule = res.data.data.c1cm;
+                $localStorage.c2_currentmodule = res.data.data.c2cm;
+                $localStorage.c1status = res.data.data.c1_status;
+                $rootScope.course1status = $localStorage.c1status;
+                $localStorage.c2status = res.data.data.c2_status;
+                $rootScope.course2status = $localStorage.c2status;
+                $rootScope.name = $localStorage.name;
+                $rootScope.idemp = $localStorage.empid;
+                $location.path('/course');
+
+
+                $localStorage.compelete_module1 = false;
+                $localStorage.compelete_module2 = false;
+                $localStorage.compelete_module3 = false;
+                $localStorage.compelete_module4 = false;
+
+                $localStorage.compelete2_module1 = false;
+                $localStorage.compelete2_module2 = false;
+                $localStorage.compelete2_module3 = false;
+
+
+                if ($localStorage.c1_currentmodule == 5) {
+                    $localStorage.compelete_module1 = true;
+                    $localStorage.compelete_module2 = true;
+                    $localStorage.compelete_module3 = true;
+                    $localStorage.compelete_module4 = true;
+
+                }
+                else if ($localStorage.c1_currentmodule == 4) {
+                    $localStorage.compelete_module1 = true;
+                    $localStorage.compelete_module2 = true;
+                    $localStorage.compelete_module3 = true;
+                }
+                else if ($localStorage.c1_currentmodule == 3) {
+                    $localStorage.compelete_module1 = true;
+                    $localStorage.compelete_module2 = true;
+                }
+                else if ($localStorage.c1_currentmodule == 2) {
+                    $localStorage.compelete_module1 = true;
+                }
+                else {
+                }
+
+
+                if ($localStorage.c2_currentmodule == 4) {
+                    $localStorage.compelete2_module1 = true;
+                    $localStorage.compelete2_module2 = true;
+                    $localStorage.compelete2_module3 = true;
+
+                }
+                else if ($localStorage.c2_currentmodule == 3) {
+                    $localStorage.compelete2_module1 = true;
+                    $localStorage.compelete2_module2 = true;
+                }
+                else if ($localStorage.c2_currentmodule == 2) {
+                    $localStorage.compelete2_module1 = true;
+                }
+                else {
+                }
+
+
+            }, function (err) {
+                console.log("error");
+
+            });
+
         };
 
-        pepsiservice.doLogin($scope.logdata).then(function (res) {
 
-            $localStorage.name=user.name;
-            $localStorage.empid=res.data.data.emp_id;
-            $localStorage.c1_currentmodule=res.data.data.c1cm;
-            $localStorage.c2_currentmodule=res.data.data.c2cm;
-            $localStorage.c1status=res.data.data.c1_status;
-            $rootScope.course1status= $localStorage.c1status;
-            $localStorage.c2status=res.data.data.c2_status;
-            $rootScope.course2status= $localStorage.c2status;
-            $rootScope.name = $localStorage.name;
-            $rootScope.idemp = $localStorage.empid;
-            $location.path('/course');
-
-
-            $localStorage.compelete_module1=false;
-            $localStorage.compelete_module2=false;
-            $localStorage.compelete_module3=false;
-            $localStorage.compelete_module4=false;
-
-            $localStorage.compelete2_module1=false;
-            $localStorage.compelete2_module2=false;
-            $localStorage.compelete2_module3=false;
-
-
-            if($localStorage.c1_currentmodule==5)
-            {
-                $localStorage.compelete_module1=true;
-                $localStorage.compelete_module2=true;
-                $localStorage.compelete_module3=true;
-                $localStorage.compelete_module4=true;
-
-            }
-            else if($localStorage.c1_currentmodule==4){
-                $localStorage.compelete_module1=true;
-                $localStorage.compelete_module2=true;
-                $localStorage.compelete_module3=true;
-            }
-            else if($localStorage.c1_currentmodule==3)
-            {
-                $localStorage.compelete_module1=true;
-                $localStorage.compelete_module2=true;
-            }
-            else if($localStorage.c1_currentmodule==2){
-                $localStorage.compelete_module1=true;
-            }
-            else{}
-
-
-            if($localStorage.c2_currentmodule==4)
-            {
-                $localStorage.compelete2_module1=true;
-                $localStorage.compelete2_module2=true;
-                $localStorage.compelete2_module3=true;
-
-            }
-            else if($localStorage.c2_currentmodule==3){
-                $localStorage.compelete2_module1=true;
-                $localStorage.compelete2_module2=true;
-            }
-            else if($localStorage.c2_currentmodule==2)
-            {
-                $localStorage.compelete2_module1=true;
-            }
-            else{}
-
-
-        },function(err){
-            console.log("error");
-
-        });
 
 
     };
@@ -302,9 +311,23 @@ app.controller('Course1Ctrl', function($scope, $route, $location, $localStorage,
                        $localStorage.course1.module1 = true;
                        $localStorage.course1.module1_current = 0;
 
+                       $('#tab2').addClass("active");
+                       $('#tab1').removeClass("active");
+                       $scope.tab = 'second';
+
+
+                       //$scope.$apply(function () {
+                       //
+                       //});
+
+
                        $scope.vid = document.getElementById('module2');
-                           $scope.id = 'module2';
+                       $scope.id = 'module2';
+
+                       $scope.video_status2();
+
                        alert('Congrats you have cleared this test module . Now you can explore next module');
+
 
                    }else if(video==2){
 
@@ -313,10 +336,21 @@ app.controller('Course1Ctrl', function($scope, $route, $location, $localStorage,
                        $localStorage.compelete_module2 = true;
                        $localStorage.course1.module2 = true;
                        $localStorage.course1.module2_current = 0;
+
+
+                       $('#tab3').addClass("active");
+                       $('#tab2').removeClass("active");
+                       $scope.tab = 'third';
+
+
                        $scope.vid = document.getElementById('module3');
 
                        $scope.id = 'module3';
+
+                       $scope.video_status2();
+
                        alert('Congrats you have cleared this test module . Now you can explore next module');
+
 
 
                    }else if(video==3){
@@ -325,33 +359,62 @@ app.controller('Course1Ctrl', function($scope, $route, $location, $localStorage,
                        $localStorage.compelete_module3 = true;
                        $localStorage.course1.module3 = true;
                        $localStorage.course1.module3_current = 0;
+
+                       $('#tab4').addClass("active");
+                       $('#tab3').removeClass("active");
+                       $scope.tab = 'fourth';
+
+
                        $scope.vid = document.getElementById('module4');
 
                        $scope.id = 'module4';
+
+                       $scope.video_status2();
+
                        alert('Congrats you have cleared this test module . Now you can explore next module');
 
                    }else if(video==4){
 
                        $scope.compelete_module4 = true;
-                       $localStorage.compelete_module4=false;
+                       $localStorage.compelete_module4=true;
                        $localStorage.course1.module4 = true;
                        $localStorage.course1.module4_current = 0;
+
+                       $('#tab5').addClass("active");
+                       $('#tab4').removeClass("active");
+                       $scope.tab = 'fifth';
+
+
                        $scope.vid = document.getElementById('module5');
 
                        $scope.id = 'module5';
+                       $scope.video_status2();
+
                        alert('Congrats you have cleared this test module . Now you can explore next module');
 
                    }else if(video==5){
 
-                       $scope.compelete_module5 = true;
-                       $localStorage.compelete_module5 = true;
-                       $localStorage.course1.module5 = true;
-                       $localStorage.course1.module5_current = 0;
-                       $localStorage.c1status=true;
-                       $rootScope.course1status= $localStorage.c1status;
+                       if($localStorage.c1status)
+                       {
+                           alert('You have already cleared Course1 ,Please generate your certificate');
+                           $location.path('/course');
 
 
-                       alert('Congrats you have cleared Course 1 . Now you can generate your certificate');
+                       }
+
+
+                       else{
+                           $scope.compelete_module5 = true;
+                           $localStorage.compelete_module5 = true;
+                           $localStorage.course1.module5 = true;
+                           $localStorage.course1.module5_current = 0;
+                           $localStorage.c1status=true;
+                           $rootScope.course1status= $localStorage.c1status;
+                           alert('Congrats you have cleared Course 1 .Please generate your certificate');
+                           $location.path('/course');
+
+                       }
+
 
                    }
                }
@@ -453,6 +516,10 @@ app.controller('Course1Ctrl', function($scope, $route, $location, $localStorage,
         $scope.currentTime = $localStorage.course1.module1_current;
     }
 
+
+
+$scope.video_status2=function(){
+
     $scope.vid.addEventListener('timeupdate', function() {
         var percent = Math.floor((100 / $scope.vid.duration) * $scope.vid.currentTime);
         console.log(percent + ' percent');
@@ -461,6 +528,11 @@ app.controller('Course1Ctrl', function($scope, $route, $location, $localStorage,
     $scope.vid.addEventListener('loadedmetadata', function() {
         $scope.vid.currentTime = $scope.currentTime;
     });
+
+}  ;
+
+
+    $scope.video_status2();
 
     $scope.m1ques_active=false;
     $scope.m2ques_active=false;
@@ -500,9 +572,14 @@ app.controller('Course1Ctrl', function($scope, $route, $location, $localStorage,
         } else if (id == 'module2') {
             if ($scope.current == $scope.duration) {
 
-                //$scope.getquestions(1,2);
+                $scope.getquestions(1,2);
                 $scope.$apply(function () {
                     $scope.m2ques_active=true;
+                    $scope.submit_answer = {};
+                    $scope.submitted=false;
+                    $scope.questionformValid=false;
+                    $scope.valid=false;
+
                     console.log($scope.m2ques_active);
                 });
 
@@ -512,9 +589,14 @@ app.controller('Course1Ctrl', function($scope, $route, $location, $localStorage,
         } else if (id == 'module3') {
             if ($scope.current == $scope.duration) {
 
-                //$scope.getquestions(1,3);
+                $scope.getquestions(1,3);
                 $scope.$apply(function () {
                     $scope.m3ques_active=true;
+                    $scope.submit_answer = {};
+                    $scope.submitted=false;
+                    $scope.questionformValid=false;
+                    $scope.valid=false;
+
                     console.log($scope.m3ques_active);
                 });
 
@@ -523,9 +605,14 @@ app.controller('Course1Ctrl', function($scope, $route, $location, $localStorage,
         } else if (id == 'module4') {
             if ($scope.current == $scope.duration) {
 
-                //$scope.getquestions(1,4);
+                $scope.getquestions(1,4);
                 $scope.$apply(function () {
                     $scope.m4ques_active=true;
+                    $scope.submit_answer = {};
+                    $scope.submitted=false;
+                    $scope.questionformValid=false;
+                    $scope.valid=false;
+
                     console.log($scope.m4ques_active);
                 });
 
@@ -534,9 +621,13 @@ app.controller('Course1Ctrl', function($scope, $route, $location, $localStorage,
         } else if (id == 'module5') {
             if (value.currentTime == value.duration) {
 
-                //$scope.getquestions(1,5);
+                $scope.getquestions(1,5);
                 $scope.$apply(function () {
                     $scope.m5ques_active=true;
+                    $scope.submit_answer = {};
+                    $scope.submitted=false;
+                    $scope.questionformValid=false;
+                    $scope.valid=false;
                     console.log($scope.m5ques_active);
                 });
 
@@ -627,9 +718,22 @@ app.controller('Course2Ctrl', function($scope, $location, $localStorage,pepsiser
 
                 if($scope.check_response.test_clear)
                 {
-                    alert('Congrats you have cleared Course 2 . Now you can generate your certificate');
-                    $localStorage.c2status=true;
-                    $rootScope.course2status= $localStorage.c2status;
+
+
+                    if($localStorage.c2status)
+                    {
+                        alert('You have already cleared Course2 ,Please generate your certificate');
+                        $location.path('/course');
+                    }
+
+                    else{
+                        alert('Congrats you have cleared Course 2 . Now you can generate your certificate');
+                        $localStorage.c2status=true;
+                        $rootScope.course2status= $localStorage.c2status;
+                        $location.path('/course');
+                    }
+
+
 
 
                 }
@@ -702,6 +806,9 @@ app.controller('Course2Ctrl', function($scope, $location, $localStorage,pepsiser
 
 
 
+$scope.video_status1=function(){
+
+
     $scope.vid.addEventListener('timeupdate', function() {
         var percent = Math.floor((100 / $scope.vid.duration) * $scope.vid.currentTime);
         console.log(percent + ' percent');
@@ -710,6 +817,14 @@ app.controller('Course2Ctrl', function($scope, $location, $localStorage,pepsiser
     $scope.vid.addEventListener('loadedmetadata', function() {
         $scope.vid.currentTime = $scope.currentTime;
     });
+
+
+};
+
+    $scope.video_status1();
+
+
+
 
 
 
@@ -766,9 +881,18 @@ app.controller('Course2Ctrl', function($scope, $location, $localStorage,pepsiser
                 });
 
                 $scope.videoiddata(1);
+                $scope.vid = document.getElementById('module2');
+                $scope.id = 'module2';
+                $scope.video_status1();
+
                 $localStorage.compelete2_module1 = true;
                 $localStorage.course2.module1 = true;
                 $localStorage.course2.module1_current = 0;
+
+                $('#tab2').addClass("active");
+                $('#tab1').removeClass("active");
+                $scope.tab = 'second';
+
 
             }
             $localStorage.course2.module1_current = value.currentTime;
@@ -783,9 +907,16 @@ app.controller('Course2Ctrl', function($scope, $location, $localStorage,pepsiser
                 });
                 $scope.videoiddata(2);
 
+                $scope.vid = document.getElementById('module3');
+                $scope.id = 'module3';
+                $scope.video_status1();
+
                 $localStorage.compelete2_module2 = true;
                 $localStorage.course2.module2 = true;
                 $localStorage.course2.module2_current = 0;
+                $('#tab3').addClass("active");
+                $('#tab2').removeClass("active");
+                $scope.tab = 'third';
 
 
             }
@@ -799,9 +930,15 @@ app.controller('Course2Ctrl', function($scope, $location, $localStorage,pepsiser
 
                 });
                 $scope.videoiddata(3);
+                $scope.vid = document.getElementById('module4');
+                $scope.id = 'module4';
+                $scope.video_status1();
                 $localStorage.compelete2_module3 = true;
                 $localStorage.course2.module3 = true;
                 $localStorage.course2.module3_current = 0;
+                $('#tab4').addClass("active");
+                $('#tab3').removeClass("active");
+                $scope.tab = 'fourth';
 
 
             }
@@ -820,6 +957,7 @@ app.controller('Course2Ctrl', function($scope, $location, $localStorage,pepsiser
                 $localStorage.compelete2_module4 = true;
                 $localStorage.course2.module4 = true;
                 $localStorage.course2.module4_current = 0;
+
 
 
             }
@@ -899,8 +1037,6 @@ app.factory('pepsiservice', function($http,$localStorage,$q){
 
 
 });
-
-
 
 app.filter("trustUrl", ['$sce', function ($sce) {
     return function (recordingUrl) {
