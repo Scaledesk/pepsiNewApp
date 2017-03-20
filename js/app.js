@@ -1,5 +1,6 @@
 var app = angular.module('myapp', ['ngRoute', 'ngStorage']);
 app.config(function($routeProvider, $locationProvider) {
+
     $routeProvider
         .when('/', {
             cache: false,
@@ -55,22 +56,16 @@ app.run(function($rootScope, $localStorage) {
 
 app.controller('HomeCtrl', function($scope, $rootScope, $location, $localStorage,pepsiservice) {
 
-    if ($localStorage.empid == '' || $localStorage.empid == undefined) {
-    }
-    else{
-
+    if ($localStorage.empid == '' || $localStorage.empid == undefined) {}
+    else
         $location.path('/course');
 
-    }
 
     $scope.submitted=false;
 
     $scope.loginemp=function(user){
 
         $scope.submitted=true;
-
-
-
         if (user.loginForm) {
 
             $scope.logdata = {
@@ -187,20 +182,20 @@ app.controller('CourseCtrl', function($scope, $location, $localStorage,$rootScop
         $localStorage.course = course;
 
         if($localStorage.course1) {}
-        else{
+        else
             $localStorage.course1 = {};
-        }
+
         if($localStorage.course2) {}
-        else{
+        else
             $localStorage.course2 = {};
-        }
+
         $location.path('/' + course);
     }
 
 });
 
 
-app.controller('Course1Ctrl', function($scope, $route, $location, $localStorage,$rootScope,pepsiservice) {
+app.controller('Course1Ctrl', function($scope,$sce, $route, $location, $localStorage,$rootScope,pepsiservice) {
 
     $rootScope.idemp = $localStorage.empid;
     $rootScope.name = $localStorage.name;
@@ -208,38 +203,34 @@ app.controller('Course1Ctrl', function($scope, $route, $location, $localStorage,
     if ($localStorage.empid == '' || $localStorage.empid == undefined) {
         $location.path('/');
     }
-    else{
+    else
         $location.path('/course1');
 
-    }
-
-    //$scope.videourls="";
+    // $scope.videourls="";
+    // $scope.videoloaded=false;
     //
-    //$scope.getvideourl=function(videoid){
+    // $scope.getvideourl=function(videoid){
     //    $scope.getvideodata={
     //        course_id: "1",
     //        video_id: videoid+""
     //    };
     //    pepsiservice.getVideo($scope.getvideodata).then(function (res) {
     //
-    //
-    //
     //        $scope.videourls=res.data.video_url;
-    //
-    //        console.log($scope.videourls);
-    //
+    //       //  $scope.videoloaded=true;
+    //       //  $scope.video_status2();
     //
     //    },function(err){
     //        console.log("error");
     //    });
-    //};
-    //
-    //$scope.getvideourl(1);
+    // };
+    // $scope.getvideourl(1);
 
-
-
-    //$scope.videourls="http://pepsico.scaledesk.com/gitvid/Board%20Room.mp4";
-
+    $scope.videourls="http://pepsico.scaledesk.com/gitvid/Board%20Room.mp4";
+    // $scope.verifiedUrl = function(url){
+    //   console.log('url '+url);
+    //   return $sce.trustAsResourceUrl(url);
+    // }
 
     $scope.submit_answer = {};
     $scope.submitted=false;
@@ -247,7 +238,6 @@ app.controller('Course1Ctrl', function($scope, $route, $location, $localStorage,
     $scope.valid=false;
 
     $scope.getquestions=function(course,video){
-
         console.log(video);
         $scope.getquesdata = {
             course_id: course+"",
@@ -265,6 +255,7 @@ app.controller('Course1Ctrl', function($scope, $route, $location, $localStorage,
         });
 
     };
+
 
     $scope.submitanswer=function(submit_answer,questionformValid,video){
 
@@ -288,6 +279,12 @@ app.controller('Course1Ctrl', function($scope, $route, $location, $localStorage,
                 }
             };
 
+            $scope.q1_response=true;
+            $scope.q2_response=true;
+            $scope.q3_response=true;
+            $scope.q4_response=true;
+            $scope.q5_response=true;
+
             pepsiservice.checkAnswers($scope.answerdata).then(function (res) {
 
                 $scope.check_response=res.data;
@@ -299,13 +296,9 @@ app.controller('Course1Ctrl', function($scope, $route, $location, $localStorage,
                 $scope.q4_response=$scope.check_ans[3].is_correct;
                 $scope.q5_response=$scope.check_ans[4].is_correct;
 
-
-
-
                if($scope.check_response.test_clear)
                {
                    if(video==1){
-
                        $scope.compelete_module1 = true;
                        $localStorage.compelete_module1 = true;
                        $localStorage.course1.module1 = true;
@@ -315,11 +308,8 @@ app.controller('Course1Ctrl', function($scope, $route, $location, $localStorage,
                        $('#tab1').removeClass("active");
                        $scope.tab = 'second';
 
-
                        //$scope.$apply(function () {
-                       //
                        //});
-
 
                        $scope.vid = document.getElementById('module2');
                        $scope.id = 'module2';
@@ -331,12 +321,10 @@ app.controller('Course1Ctrl', function($scope, $route, $location, $localStorage,
 
                    }else if(video==2){
 
-
                        $scope.compelete_module2 = true;
                        $localStorage.compelete_module2 = true;
                        $localStorage.course1.module2 = true;
                        $localStorage.course1.module2_current = 0;
-
 
                        $('#tab3').addClass("active");
                        $('#tab2').removeClass("active");
@@ -346,7 +334,6 @@ app.controller('Course1Ctrl', function($scope, $route, $location, $localStorage,
                        $scope.vid = document.getElementById('module3');
 
                        $scope.id = 'module3';
-
                        $scope.video_status2();
 
                        alert('Congrats you have cleared this test module . Now you can explore next module');
@@ -518,19 +505,20 @@ app.controller('Course1Ctrl', function($scope, $route, $location, $localStorage,
 
 
 
-$scope.video_status2=function(){
 
-    $scope.vid.addEventListener('timeupdate', function() {
-        var percent = Math.floor((100 / $scope.vid.duration) * $scope.vid.currentTime);
-        console.log(percent + ' percent');
-        $scope.$emit('percentage', $scope.vid, $scope.id);
-    }, false);
-    $scope.vid.addEventListener('loadedmetadata', function() {
-        $scope.vid.currentTime = $scope.currentTime;
-    });
+    $scope.video_status2=function(){
 
-}  ;
 
+        $scope.vid.addEventListener('timeupdate', function() {
+            var percent = Math.floor((100 / $scope.vid.duration) * $scope.vid.currentTime);
+            console.log(percent + ' percent');
+            $scope.$emit('percentage', $scope.vid, $scope.id);
+        }, false);
+        $scope.vid.addEventListener('loadedmetadata', function() {
+            $scope.vid.currentTime = $scope.currentTime;
+        });
+
+    }  ;
 
     $scope.video_status2();
 
@@ -698,6 +686,18 @@ app.controller('Course2Ctrl', function($scope, $location, $localStorage,pepsiser
                 }
             };
 
+
+            $scope.q1_response=true;
+            $scope.q2_response=true;
+            $scope.q3_response=true;
+            $scope.q4_response=true;
+            $scope.q5_response=true;
+            $scope.q6_response=true;
+            $scope.q7_response=true;
+            $scope.q8_response=true;
+            $scope.q9_response=true;
+            $scope.q10_response=true;
+
             pepsiservice.checkAnswers($scope.answerdata).then(function (res) {
 
                 $scope.check_response=res.data;
@@ -714,11 +714,8 @@ app.controller('Course2Ctrl', function($scope, $location, $localStorage,pepsiser
                 $scope.q9_response=$scope.check_ans[8].is_correct;
                 $scope.q10_response=$scope.check_ans[9].is_correct;
 
-
-
                 if($scope.check_response.test_clear)
                 {
-
 
                     if($localStorage.c2status)
                     {
@@ -732,9 +729,6 @@ app.controller('Course2Ctrl', function($scope, $location, $localStorage,pepsiser
                         $rootScope.course2status= $localStorage.c2status;
                         $location.path('/course');
                     }
-
-
-
 
                 }
 

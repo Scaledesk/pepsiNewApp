@@ -32,3 +32,40 @@
 .tab-bg{
   background-color: #fff!important;
 }
+
+.f-20{
+  font-size: 20px!important;
+}
+
+.f-18{
+  font-size: 18px!important;
+}
+
+.f-16{
+  font-size: 16px!important;
+}
+
+.green-font{
+color: green;
+}
+
+.blue-font{
+color:#337ab7;
+margin-left: 5px;
+}
+
+.submit-btn{
+margin-top: 30px;
+margin-left: 80px;
+
+}
+
+.submit-button{
+
+font-size: 20px;
+margin-top: 30px;
+margin-bottom:10px;
+height: 40px;
+width: 150px;
+
+}
