@@ -1,0 +1,21 @@
+{
+  "name": "pepsiNewApp",
+  "homepage": "https://github.com/Scaledesk/pepsiNewApp",
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-route": "^1.6.0",
+    "angular": "^1.6.0",
+    "ngstorage": "^0.3.11",
+    "bootstrap": "^3.3.7",
+    "pdfmake": "^0.1.27"
+  }
+}

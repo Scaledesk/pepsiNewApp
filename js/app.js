@@ -15,6 +15,13 @@ app.config(function($routeProvider, $locationProvider) {
             controllerAs: 'C'
         })
 
+        .when('/certificate1', {
+            cache: false,
+            templateUrl: 'templates/certificate1.html',
+            controller: 'Certi1Ctrl',
+            controllerAs: 'Cert1'
+        })
+
         .when('/course1', {
             cache: false,
             templateUrl: 'templates/course1.html',
@@ -191,6 +198,69 @@ app.controller('CourseCtrl', function($scope, $location, $localStorage,$rootScop
 
         $location.path('/' + course);
     }
+
+
+    $scope.cert1page = function() {
+
+        $location.path('/certificate1');
+    }
+
+
+
+
+$scope.generatecert =function(){
+
+  console.log("generate");
+  html2canvas(document.getElementById('exportthis'), {
+             onrendered: function (canvas) {
+                 var data = canvas.toDataURL();
+                 var docDefinition = {
+                     content: [{
+                         image: data,
+                         width: 500,
+                     }]
+                 };
+                 pdfMake.createPdf(docDefinition).download("Score_Details.pdf");
+             }
+         });
+
+}
+
+
+
+});
+
+
+
+app.controller('Certi1Ctrl', function($scope, $location, $localStorage,$rootScope) {
+
+    $rootScope.name = $localStorage.name;
+    $rootScope.idemp = $localStorage.empid;
+    $rootScope.course1status= $localStorage.c1status;
+    $rootScope.course2status= $localStorage.c2status;
+
+    if (!$localStorage.c1status) {
+        $location.path('/course');
+    }
+
+
+$scope.generatecert =function(){
+
+  console.log("generate certificate 1");
+  html2canvas(document.getElementById('exportthis'), {
+             onrendered: function (canvas) {
+                 var data = canvas.toDataURL();
+                 var docDefinition = {
+                     content: [{
+                         image: data,
+                         width: 500,
+                     }]
+                 };
+                 pdfMake.createPdf(docDefinition).download("Score_Details.pdf");
+             }
+         });
+
+}
 
 });
 
