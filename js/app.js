@@ -22,6 +22,13 @@ app.config(function($routeProvider, $locationProvider) {
             controllerAs: 'Cert1'
         })
 
+        .when('/certificate2', {
+            cache: false,
+            templateUrl: 'templates/certificate2.html',
+            controller: 'Certi2Ctrl',
+            controllerAs: 'Cert2'
+        })
+
         .when('/course1', {
             cache: false,
             templateUrl: 'templates/course1.html',
@@ -201,12 +208,12 @@ app.controller('CourseCtrl', function($scope, $location, $localStorage,$rootScop
 
 
     $scope.cert1page = function() {
-
         $location.path('/certificate1');
     }
 
-
-
+        $scope.cert2page = function() {
+            $location.path('/certificate2');
+        }
 
 $scope.generatecert =function(){
 
@@ -256,13 +263,57 @@ $scope.generatecert =function(){
                          width: 500,
                      }]
                  };
-                 pdfMake.createPdf(docDefinition).download("Score_Details.pdf");
+                 pdfMake.createPdf(docDefinition).download("certificate1.pdf");
              }
          });
 
 }
 
 });
+
+
+app.controller('Certi2Ctrl', function($scope, $location, $localStorage,$rootScope) {
+
+    $rootScope.name = $localStorage.name;
+    $rootScope.idemp = $localStorage.empid;
+    $rootScope.course1status= $localStorage.c1status;
+    $rootScope.course2status= $localStorage.c2status;
+
+    if (!$localStorage.c2status) {
+        $location.path('/course');
+    }
+
+
+$scope.generatecert =function(){
+  console.log("generate certificate 2");
+  html2canvas(document.getElementById('exportthis'), {
+             onrendered: function (canvas) {
+                 var data = canvas.toDataURL();
+                 var docDefinition = {
+                     content: [{
+                         image: data,
+                         width: 500,
+                     }]
+                 };
+                 pdfMake.createPdf(docDefinition).download("certificate2.pdf");
+             }
+         });
+
+}
+
+});
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 app.controller('Course1Ctrl', function($scope,$sce, $route, $location, $localStorage,$rootScope,pepsiservice) {
