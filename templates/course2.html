@@ -5,7 +5,7 @@
   }
 </style>
 <div class="content-section-a">
-<div class="container">
+<div class="container-fluid">
     <div class="row">
        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
           <h4>Course 2</h4>
@@ -14,7 +14,7 @@
 
     <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
               <div class="list-group">
                 <a href="" id="tab1" class="list-group-item active text-center" ng-click="tab='first'">
                  Module 1
@@ -31,29 +31,44 @@
               </div>
             </div>
 
-            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9" style="background:#fff;">
+            <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+
+
 
                 <div ng-show="tab=='first'">
-                      <div class="row">
+                    <div class="panel panel-default" >
+                      <div class="panel-heading">Course 2 Module 1</div>
+                      <div class="panel-body">
+                        <div class="row">
 
-                          <div class="col-md-8 col-md-offset-1">
-                              <video class="border" id="module1" name="module1" width="auto" height="400px" poster="http://pepsicodemo.scaledesk.com/pepsico-demo/img/video-preview.png" controls="">
-                                <source src="http://www.demo.scaledesk.com/cash%20Management%20with%20music.mp4" type="video/mp4">
+                          <div class="col-md-8 col-md-offset-1 m-l-0">
+                              <video class="border" id="module1" name="module1" width="auto" height="600px" poster="http://pepsicodemo.scaledesk.com/pepsico-demo/img/video-preview.png" controls="">
+                                <source src="http://pepsico.scaledesk.com/pepsi_videos/Working_Capital_1.mp4" type="video/mp4">
                               </video>
                           </div>
-                      </div>
+                        </div>
+
+                    </div>
+                  </div>
                 </div>
 
 
                 <div ng-show="tab=='second'">
 
+                  <div class="panel panel-default" >
+                    <div class="panel-heading">Course 2 Module 2</div>
+                    <div class="panel-body">
+
                     <div class="row">
-                        <div class="col-md-8 col-md-offset-1">
-                            <video class="border" id="module2" name="module2" width="auto" height="400px" poster="http://pepsicodemo.scaledesk.com/pepsico-demo/img/video-preview.png" controls="">
-                              <source src="http://www.demo.scaledesk.com/cash%20Management%20with%20music.mp4" type="video/mp4">
+                        <div class="col-md-8 col-md-offset-1 m-l-0">
+                            <video class="border" id="module2" name="module2" width="auto" height="600px" poster="http://pepsicodemo.scaledesk.com/pepsico-demo/img/video-preview.png" controls="">
+                              <source src="http://pepsico.scaledesk.com/pepsi_videos/WorkingCapital2.mp4" type="video/mp4">
                             </video>
                         </div>
                     </div>
+
+                  </div>
+                </div>
 
                 </div>
 

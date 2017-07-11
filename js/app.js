@@ -1,4 +1,4 @@
-var app = angular.module('myapp', ['ngRoute', 'ngStorage']);
+var app = angular.module('myapp', ['ngRoute', 'ngStorage','angularModalService']);
 app.config(function($routeProvider, $locationProvider) {
 
     $routeProvider
@@ -180,7 +180,7 @@ app.controller('HomeCtrl', function($scope, $rootScope, $location, $localStorage
 });
 
 
-app.controller('CourseCtrl', function($scope, $location, $localStorage,$rootScope) {
+app.controller('CourseCtrl', function($scope, $location,$rootScope, $localStorage,ModalService) {
 
     $rootScope.name = $localStorage.name;
     $rootScope.idemp = $localStorage.empid;
@@ -190,7 +190,6 @@ app.controller('CourseCtrl', function($scope, $location, $localStorage,$rootScop
     if ($localStorage.empid == '' || $localStorage.empid == undefined) {
         $location.path('/');
     }
-
 
     $scope.selectCourse = function(course) {
         $localStorage.course = course;
@@ -234,10 +233,33 @@ $scope.generatecert =function(){
 }
 
 
+// $scope.show = function() {
+//    ModalService.showModal({
+//        templateUrl: 'modal.html',
+//        controller: "ModalController"
+//    }).then(function(modal) {
+//
+//        modal.element.modal();
+//        modal.close.then(function(result) {
+//            $scope.message = "You said " + result;
+//        });
+//    });
+// };
+
+// $scope.close = function(result) {
+// close(result, 500);
+// }
+
 
 });
 
-
+// app.controller('ModalController', function($scope,$rootScope, close) {
+// $scope.close = function(result) {
+//     close(result, 500);
+// }
+//
+//
+// });
 
 app.controller('Certi1Ctrl', function($scope, $location, $localStorage,$rootScope) {
 

@@ -16,6 +16,7 @@
     "angular": "^1.6.0",
     "ngstorage": "^0.3.11",
     "bootstrap": "^3.3.7",
-    "pdfmake": "^0.1.27"
+    "pdfmake": "^0.1.27",
+    "angular-modal-service": "^0.12.1"
   }
 }

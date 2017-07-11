@@ -5,7 +5,7 @@
 </style>
 
 <div class="content-section-a">
-    <div class="container">
+    <div class="container-fluid">
 
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
@@ -14,7 +14,7 @@
         </div>
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
                     <div class="list-group">
                         <a href="" id="tab1" class="list-group-item active text-center" ng-click="tab='first';chkstatus(1);">
                   Module 1
@@ -34,81 +34,165 @@
                     </div>
                 </div>
 
-                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9" style="background:#fff;">
+                <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
 
                     <div ng-show="tab=='first'">
+
+                      <div class="panel panel-default" >
+                        <div class="panel-heading">Course 1 Module 1</div>
+                        <div class="panel-body">
+
+
                         <div class="row"  >
-                            <div class="col-md-8 col-md-offset-1">
-                                <video  class="border" id="module1" name="module1" width="auto" height="400px" poster="http://pepsicodemo.scaledesk.com/pepsico-demo/img/video-preview.png" controls="">
+                            <div class="col-md-9 col-md-offset-1 m-l-0">
+                                <video  class="border" id="module1" name="module1" width="auto" height="600px" poster="http://pepsicodemo.scaledesk.com/pepsico-demo/img/video-preview.png" controls="">
                                   <!-- <source src="{{videourls}}" type="video/mp4"> -->
-                                    <source src="http://www.demo.scaledesk.com/cash%20Management%20with%20music.mp4" type="video/mp4">
+                                    <source src="http://pepsico.scaledesk.com/pepsi_videos/treasury_1.mp4" type="video/mp4">
                               </video>
 
                             </div>
 
                         </div>
+                        </div>
+                        </div>
 
-                        <div class="row" ng-show="m1ques_active || compelete_module1" style="background-color:#efeeee;" >
-                        <!--<div class="row"  >-->
+                      <div class="panel panel-default" ng-show="m1ques_active || compelete_module1" >
+                        <div class="panel-heading">Course 1 Module 1 Questions</div>
+                        <div class="panel-body" >
 
-                            <form ng-submit="submitanswer(submit_answer,questionformValid,1)" name="questionform" novalidate  >
+                          <div class="row"  >
+                          <!--<div class="row"  >-->
+
+                              <form ng-submit="submitanswer(submit_answer,questionformValid,1)" name="questionform" novalidate  >
+
+                              <div ng-repeat="question in questions" class="col-md-11 col-md-offset-1 ques-margin">
+                                  <p class="f-20" >Question - {{$index+1}}</p>
+                                  <p  class="green-font f-16">{{question.ques}}</p>
+
+                                  <div class="radio">
+                                    <label>
+                                      <input type="radio" name="q{{$index+1}}" ng-model="submit_answer[$index+1]" value="a" required>
+                                      {{question.a}}
+                                    </label>
+                                  </div>
+
+                                  <div class="radio">
+                                    <label>
+                                      <input type="radio" name="q{{$index+1}}" ng-model="submit_answer[$index+1]" value="b" required>
+                                      {{question.b}}
+                                    </label>
+                                  </div>
+
+                                  <div class="radio">
+                                    <label>
+                                      <input type="radio" name="q{{$index+1}}" ng-model="submit_answer[$index+1]" value="c" required>
+                                      {{question.c}}
+                                    </label>
+                                  </div>
+
+                                  <div class="radio">
+                                    <label>
+                                      <input type="radio" name="q{{$index+1}}" ng-model="submit_answer[$index+1]" value="d" required>
+                                      {{question.d}}
+                                    </label>
+                                  </div>
 
 
-                            <div ng-repeat="question in questions" class="col-md-11 col-md-offset-1" style="margin-top: 20px;">
-                                <p class="f-20" >Question - {{$index+1}}</p>
-                                <p  class="green-font f-16">{{question.ques}}</p>
 
-                                <span></span><input type="radio" name="q{{$index+1}}" ng-model="submit_answer[$index+1]" value="a" required><span class="blue-font f-18">{{question.a}}</span><br>
-                                <span></span><input type="radio" name="q{{$index+1}}" ng-model="submit_answer[$index+1]" value="b" required><span class="blue-font f-18">{{question.b}}</span><br>
-                                <span></span><input type="radio" name="q{{$index+1}}" ng-model="submit_answer[$index+1]" value="c" required><span class="blue-font f-18">{{question.c}}</span><br>
-                                <span></span><input type="radio" name="q{{$index+1}}" ng-model="submit_answer[$index+1]" value="d" required><span class="blue-font f-18">{{question.d}}</span><br>
 
-                                <small style="color: darkred" ng-show="!q{{$index+1}}_response && valid && submitted ">Wrong Answer</small>
-                                <small style="color: darkred" ng-show="questionform.q{{$index+1}}.$invalid && submitted ">* Please answer this question</small>
+                                  <!-- <span></span><input type="radio" name="q{{$index+1}}" ng-model="submit_answer[$index+1]" value="d" required><span class="blue-font f-18">{{question.d}}</span><br> -->
 
-                            </div>
+                                  <small style="color: darkred" ng-show="!q{{$index+1}}_response && valid && submitted ">Wrong Answer</small>
+                                  <small style="color: darkred" ng-show="questionform.q{{$index+1}}.$invalid && submitted ">* Please answer this question</small>
 
-                            <span class="submit-btn" >
-                               <button type="submit" class="btn btn-primary submit-button">Submit</button>
-                            </span>
+                              </div>
 
-                                <span style="display:none" >{{ questionformValid = questionform.$valid}}</span>
 
-                            </form>
+                              <div class="submit-btn text-right" >
+                                 <button type="submit" class="btn btn-primary">Submit</button>
+                              </div>
+
+                                  <span style="display:none" >{{ questionformValid = questionform.$valid}}</span>
+                              </form>
+
+                          </div>
+
 
                         </div>
+                      </div>
+
+
+
+
                     </div>
 
 
                     <div ng-show="tab=='second'">
 
+                      <div class="panel panel-default" >
+                        <div class="panel-heading">Course 1 Module 2</div>
+                        <div class="panel-body">
+
                         <div class="row">
-                            <div class="col-md-8 col-md-offset-1">
-                                <video class="border" id="module2" name="module2" width="auto" height="400px" poster="http://pepsicodemo.scaledesk.com/pepsico-demo/img/video-preview.png" controls="">
+                            <div class="col-md-8 col-md-offset-1 m-l-0 ">
+                                <video class="border" id="module2" name="module2" width="auto" height="600px" poster="http://pepsicodemo.scaledesk.com/pepsico-demo/img/video-preview.png" controls="">
                                     <!-- <source src="http://pepsico.scaledesk.com/gitvid/Board%20Room.mp4" type="video/mp4"> -->
-                                      <source src="http://www.demo.scaledesk.com/cash%20Management%20with%20music.mp4" type="video/mp4">
+                                      <source src="http://pepsico.scaledesk.com/pepsi_videos/treasury_2.mp4" type="video/mp4">
 
 
                               </video>
                             </div>
                         </div>
 
+                      </div>
+                    </div>
 
 
-                        <div class="row" ng-show="m2ques_active || compelete_module2" style="background-color:#efeeee;" >
+                    <div class="panel panel-default" ng-show="m2ques_active || compelete_module2" >
+                      <div class="panel-heading">Course 1 Module 2 Questions</div>
+                      <div class="panel-body" >
+
+
+                        <div class="row" >
                             <!--<div class="row"  >-->
 
                             <form ng-submit="submitanswer(submit_answer,questionformValid,2)" name="questionform" novalidate  >
 
 
-                                <div ng-repeat="question in questions" class="col-md-11 col-md-offset-1" style="margin-top: 20px;">
+                                <div ng-repeat="question in questions" class="col-md-11 col-md-offset-1 ques-margin">
                                     <p class="f-20" >Question - {{$index+1}}</p>
                                     <p class="green-font f-16">{{question.ques}}</p>
 
-                                    <span></span><input type="radio" name="q{{$index+1}}" ng-model="submit_answer[$index+1]" value="a" required><span class="blue-font f-18">{{question.a}}</span><br>
-                                    <span></span><input type="radio" name="q{{$index+1}}" ng-model="submit_answer[$index+1]" value="b" required><span class="blue-font f-18">{{question.b}}</span><br>
-                                    <span></span><input type="radio" name="q{{$index+1}}" ng-model="submit_answer[$index+1]" value="c" required><span class="blue-font f-18">{{question.c}}</span><br>
-                                    <span></span><input type="radio" name="q{{$index+1}}" ng-model="submit_answer[$index+1]" value="d" required><span class="blue-font f-18">{{question.d}}</span><br>
+
+                                    <div class="radio">
+                                      <label>
+                                        <input type="radio" name="q{{$index+1}}" ng-model="submit_answer[$index+1]" value="a" required>
+                                        {{question.a}}
+                                      </label>
+                                    </div>
+
+                                    <div class="radio">
+                                      <label>
+                                        <input type="radio" name="q{{$index+1}}" ng-model="submit_answer[$index+1]" value="b" required>
+                                        {{question.b}}
+                                      </label>
+                                    </div>
+
+                                    <div class="radio">
+                                      <label>
+                                        <input type="radio" name="q{{$index+1}}" ng-model="submit_answer[$index+1]" value="c" required>
+                                        {{question.c}}
+                                      </label>
+                                    </div>
+
+                                    <div class="radio">
+                                      <label>
+                                        <input type="radio" name="q{{$index+1}}" ng-model="submit_answer[$index+1]" value="d" required>
+                                        {{question.d}}
+                                      </label>
+                                    </div>
+
+
 
                                     <small style="color: darkred" ng-show="!q{{$index+1}}_response && valid && submitted ">Wrong Answer</small>
 
@@ -117,9 +201,9 @@
 
                                 </div>
 
-                                <span class="submit-btn" >
-                                   <button type="submit" class="btn btn-primary submit-button">Submit</button>
-                                </span>
+                                <div class="submit-btn text-right" >
+                                   <button type="submit" class="btn btn-primary">Submit</button>
+                                </div>
 
                                 <span style="display:none" >{{ questionformValid = questionform.$valid}}</span>
 
@@ -127,7 +211,8 @@
 
                         </div>
 
-
+                      </div>
+               </div>
 
 
 
@@ -136,32 +221,68 @@
                     </div>
 
                     <div ng-show="tab=='third'">
+
+                      <div class="panel panel-default" >
+                        <div class="panel-heading">Course 1 Module 3</div>
+                        <div class="panel-body">
+
                         <div class="row">
-                            <div class="col-md-8 col-md-offset-1">
-                                <video class="border" id="module3" name="module3" width="auto" height="400px" poster="http://pepsicodemo.scaledesk.com/pepsico-demo/img/video-preview.png" controls="">
-                                  <source src="http://www.demo.scaledesk.com/cash%20Management%20with%20music.mp4" type="video/mp4">
+                            <div class="col-md-8 col-md-offset-1 m-l-0">
+                                <video class="border" id="module3" name="module3" width="auto" height="600px" poster="http://pepsicodemo.scaledesk.com/pepsico-demo/img/video-preview.png" controls="">
+                                  <source src="http://pepsico.scaledesk.com/pepsi_videos/treasury3.mp4" type="video/mp4">
                               </video>
                             </div>
                         </div>
 
+                  </div>
+              </div>
 
 
 
 
-                        <div class="row" ng-show="m3ques_active ||compelete_module3" style="background-color:#efeeee;" >
+              <div class="panel panel-default" ng-show="m3ques_active ||compelete_module3" >
+                <div class="panel-heading">Course 1 Module 3 Questions</div>
+                <div class="panel-body" >
+
+                        <div class="row" >
                             <!--<div class="row"  >-->
 
                             <form ng-submit="submitanswer(submit_answer,questionformValid,3)" name="questionform" novalidate  >
 
 
-                                <div ng-repeat="question in questions" class="col-md-11 col-md-offset-1" style="margin-top: 20px;">
+                                <div ng-repeat="question in questions" class="col-md-11 col-md-offset-1 ques-margin">
                                     <p class="f-20" >Question - {{$index+1}}</p>
                                     <p class="green-font f-16">{{question.ques}}</p>
 
-                                    <span></span><input type="radio" name="q{{$index+1}}" ng-model="submit_answer[$index+1]" value="a" required><span class="blue-font f-18">{{question.a}}</span><br>
-                                    <span></span><input type="radio" name="q{{$index+1}}" ng-model="submit_answer[$index+1]" value="b" required><span class="blue-font f-18">{{question.b}}</span><br>
-                                    <span></span><input type="radio" name="q{{$index+1}}" ng-model="submit_answer[$index+1]" value="c" required><span class="blue-font f-18">{{question.c}}</span><br>
-                                    <span></span><input type="radio" name="q{{$index+1}}" ng-model="submit_answer[$index+1]" value="d" required><span class="blue-font f-18">{{question.d}}</span><br>
+
+                                    <div class="radio">
+                                      <label>
+                                        <input type="radio" name="q{{$index+1}}" ng-model="submit_answer[$index+1]" value="a" required>
+                                        {{question.a}}
+                                      </label>
+                                    </div>
+
+                                    <div class="radio">
+                                      <label>
+                                        <input type="radio" name="q{{$index+1}}" ng-model="submit_answer[$index+1]" value="b" required>
+                                        {{question.b}}
+                                      </label>
+                                    </div>
+
+                                    <div class="radio">
+                                      <label>
+                                        <input type="radio" name="q{{$index+1}}" ng-model="submit_answer[$index+1]" value="c" required>
+                                        {{question.c}}
+                                      </label>
+                                    </div>
+
+                                    <div class="radio">
+                                      <label>
+                                        <input type="radio" name="q{{$index+1}}" ng-model="submit_answer[$index+1]" value="d" required>
+                                        {{question.d}}
+                                      </label>
+                                    </div>
+
 
                                     <small style="color: darkred" ng-show="!q{{$index+1}}_response && valid && submitted ">Wrong Answer</small>
 
@@ -170,10 +291,9 @@
 
                                 </div>
 
-
-                                <span class="submit-btn" >
-                                   <button type="submit" class="btn btn-primary submit-button">Submit</button>
-                                </span>
+                                <div class="submit-btn text-right" >
+                                   <button type="submit" class="btn btn-primary">Submit</button>
+                                </div>
 
                                 <span style="display:none" >{{ questionformValid = questionform.$valid}}</span>
 
@@ -181,32 +301,77 @@
 
                         </div>
 
+                        </div>
+                     </div>
+
+
+
+
+
                     </div>
 
                     <div ng-show="tab=='fourth'">
+
+                      <div class="panel panel-default" >
+                        <div class="panel-heading">Course 1 Module 4</div>
+                        <div class="panel-body">
+
                         <div class="row">
-                            <div class="col-md-8 col-md-offset-1">
-                                <video class="border" id="module4" name="module4" width="auto" height="400px" poster="http://pepsicodemo.scaledesk.com/pepsico-demo/img/video-preview.png" controls="">
-                                  <source src="http://www.demo.scaledesk.com/cash%20Management%20with%20music.mp4" type="video/mp4">
+                            <div class="col-md-8 col-md-offset-1 m-l-0">
+                                <video class="border" id="module4" name="module4" width="auto" height="600px" poster="http://pepsicodemo.scaledesk.com/pepsico-demo/img/video-preview.png" controls="">
+                                  <source src="http://pepsico.scaledesk.com/pepsi_videos/treasury4.mp4" type="video/mp4">
                               </video>
                             </div>
                         </div>
 
+                      </div>
+                    </div>
 
-                        <div class="row" ng-show="m4ques_active ||compelete_module4" style="background-color:#efeeee;" >
+
+
+                    <div class="panel panel-default" ng-show="m4ques_active ||compelete_module4" >
+                      <div class="panel-heading">Course 1 Module 4 Questions</div>
+                      <div class="panel-body" >
+
+
+                        <div class="row"  >
                             <!--<div class="row"  >-->
 
                             <form ng-submit="submitanswer(submit_answer,questionformValid,4)" name="questionform" novalidate  >
 
 
-                                <div ng-repeat="question in questions" class="col-md-11 col-md-offset-1" style="margin-top: 20px;">
+                                <div ng-repeat="question in questions" class="col-md-11 col-md-offset-1 ques-margin">
                                     <p class="f-20" >Question - {{$index+1}}</p>
                                     <p class="green-font f-16">{{question.ques}}</p>
 
-                                    <span></span><input type="radio" name="q{{$index+1}}" ng-model="submit_answer[$index+1]" value="a" required><span class="blue-font f-18">{{question.a}}</span><br>
-                                    <span></span><input type="radio" name="q{{$index+1}}" ng-model="submit_answer[$index+1]" value="b" required><span class="blue-font f-18">{{question.b}}</span><br>
-                                    <span></span><input type="radio" name="q{{$index+1}}" ng-model="submit_answer[$index+1]" value="c" required><span class="blue-font f-18">{{question.c}}</span><br>
-                                    <span></span><input type="radio" name="q{{$index+1}}" ng-model="submit_answer[$index+1]" value="d" required><span class="blue-font f-18">{{question.d}}</span><br>
+                                    <div class="radio">
+                                      <label>
+                                        <input type="radio" name="q{{$index+1}}" ng-model="submit_answer[$index+1]" value="a" required>
+                                        {{question.a}}
+                                      </label>
+                                    </div>
+
+                                    <div class="radio">
+                                      <label>
+                                        <input type="radio" name="q{{$index+1}}" ng-model="submit_answer[$index+1]" value="b" required>
+                                        {{question.b}}
+                                      </label>
+                                    </div>
+
+                                    <div class="radio">
+                                      <label>
+                                        <input type="radio" name="q{{$index+1}}" ng-model="submit_answer[$index+1]" value="c" required>
+                                        {{question.c}}
+                                      </label>
+                                    </div>
+
+                                    <div class="radio">
+                                      <label>
+                                        <input type="radio" name="q{{$index+1}}" ng-model="submit_answer[$index+1]" value="d" required>
+                                        {{question.d}}
+                                      </label>
+                                    </div>
+
 
                                     <small style="color: darkred" ng-show="!q{{$index+1}}_response && valid && submitted ">Wrong Answer</small>
 
@@ -215,9 +380,9 @@
 
                                 </div>
 
-                                <span class="submit-btn" >
-                                   <button type="submit" class="btn btn-primary submit-button">Submit</button>
-                                </span>
+                                <div class="submit-btn text-right" >
+                                   <button type="submit" class="btn btn-primary">Submit</button>
+                                </div>
 
                                 <span style="display:none" >{{ questionformValid = questionform.$valid}}</span>
 
@@ -226,7 +391,8 @@
 
                         </div>
 
-
+                      </div>
+                   </div>
 
 
                     </div>
@@ -235,7 +401,7 @@
                         <div class="row">
                             <div class="col-md-8 col-md-offset-1">
                                 <video class="border" id="module5" name="module5" width="auto" height="400px" poster="http://pepsicodemo.scaledesk.com/pepsico-demo/img/video-preview.png" controls="">
-                                  <source src="http://www.demo.scaledesk.com/cash%20Management%20with%20music.mp4" type="video/mp4">
+                                  <source src="http://pepsico.scaledesk.com/pepsi_videos/treasury4.mp4" type="video/mp4">
                               </video>
                             </div>
                         </div>
