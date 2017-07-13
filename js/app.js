@@ -369,7 +369,7 @@ app.controller('Course1Ctrl', function($scope,$sce, $route, $location, $localSto
     // };
     // $scope.getvideourl(1);
 
-    $scope.videourls="http://pepsico.scaledesk.com/gitvid/Board%20Room.mp4";
+    // $scope.videourls="http://pepsico.scaledesk.com/gitvid/Board%20Room.mp4";
     // $scope.verifiedUrl = function(url){
     //   console.log('url '+url);
     //   return $sce.trustAsResourceUrl(url);
@@ -379,6 +379,15 @@ app.controller('Course1Ctrl', function($scope,$sce, $route, $location, $localSto
     $scope.submitted=false;
     $scope.questionformValid=false;
     $scope.valid=false;
+    $scope.showdesc=true;
+
+
+$scope.toggleview=function(){
+  $scope.showdesc=!$scope.showdesc
+}
+
+
+
 
     $scope.getquestions=function(course,video){
         console.log(video);
@@ -441,7 +450,9 @@ app.controller('Course1Ctrl', function($scope,$sce, $route, $location, $localSto
 
                if($scope.check_response.test_clear)
                {
+                 $scope.showdesc=true;
                    if(video==1){
+
                        $scope.compelete_module1 = true;
                        $localStorage.compelete_module1 = true;
                        $localStorage.course1.module1 = true;
@@ -478,7 +489,6 @@ app.controller('Course1Ctrl', function($scope,$sce, $route, $location, $localSto
 
                        $scope.id = 'module3';
                        $scope.video_status2();
-
                        alert('Congrats you have cleared this test module . Now you can explore next module');
 
 
@@ -500,7 +510,6 @@ app.controller('Course1Ctrl', function($scope,$sce, $route, $location, $localSto
                        $scope.id = 'module4';
 
                        $scope.video_status2();
-
                        alert('Congrats you have cleared this test module . Now you can explore next module');
 
                    }else if(video==4){
@@ -519,7 +528,6 @@ app.controller('Course1Ctrl', function($scope,$sce, $route, $location, $localSto
 
                        $scope.id = 'module5';
                        $scope.video_status2();
-
                        alert('Congrats you have cleared this test module . Now you can explore next module');
 
                    }else if(video==5){
@@ -528,7 +536,6 @@ app.controller('Course1Ctrl', function($scope,$sce, $route, $location, $localSto
                        {
                            alert('You have already cleared Course1 ,Please generate your certificate');
                            $location.path('/course');
-
 
                        }
 
@@ -579,6 +586,8 @@ app.controller('Course1Ctrl', function($scope,$sce, $route, $location, $localSto
 
 
     $scope.chkstatus=function(video){
+
+      $scope.showdesc=true;
 
         $scope.getquestions(1,video);
 

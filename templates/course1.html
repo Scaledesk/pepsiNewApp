@@ -8,8 +8,8 @@
     <div class="container-fluid">
 
         <div class="row">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
-                <h4>Course 1</h4>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center m-t-10 f-30 m-b-10 ">
+                Course 1
             </div>
         </div>
         <div class="row">
@@ -39,13 +39,13 @@
                     <div ng-show="tab=='first'">
 
                       <div class="panel panel-default" >
-                        <div class="panel-heading">Course 1 Module 1</div>
+                        <div class="panel-heading f-18">Course 1 Module 1 <span class="text-success" ng-show="compelete_module1">&nbsp;Completed&nbsp;<i class="fa fa-check-circle" aria-hidden="true"></i></span></div>
                         <div class="panel-body">
 
 
                         <div class="row"  >
                             <div class="col-md-9 col-md-offset-1 m-l-0">
-                                <video  class="border" id="module1" name="module1" width="auto" height="600px" poster="http://pepsicodemo.scaledesk.com/pepsico-demo/img/video-preview.png" controls="">
+                                <video  class="border" id="module1" name="module1" width="auto" height="500px" poster="http://pepsicodemo.scaledesk.com/pepsico-demo/img/video-preview.png" controls="">
                                   <!-- <source src="{{videourls}}" type="video/mp4"> -->
                                     <source src="http://pepsico.scaledesk.com/pepsi_videos/treasury_1.mp4" type="video/mp4">
                               </video>
@@ -56,64 +56,107 @@
                         </div>
                         </div>
 
-                      <div class="panel panel-default" ng-show="m1ques_active || compelete_module1" >
-                        <div class="panel-heading">Course 1 Module 1 Questions</div>
+                      <!-- <div class="panel panel-default" ng-show="(m1ques_active || compelete_module1) && !showdesc" > -->
+                        <div class="panel panel-default" ng-show="!showdesc" >
+
+                        <div class="panel-heading">
+
+                          <div class="row" >
+                            <div class="col-md-9 f-18">
+                              Course 1 Module 1 Questions
+                            </div>
+                            <div class="col-md-3 text-right">
+                              <button class="btn btn-primary" ng-click=toggleview() >Description&nbsp;<i class="fa fa-pencil" aria-hidden="true"></i></button>
+                            </div>
+
+                          </div>
+
+
+
+
+                        </div>
+
                         <div class="panel-body" >
-
                           <div class="row"  >
-                          <!--<div class="row"  >-->
-
                               <form ng-submit="submitanswer(submit_answer,questionformValid,1)" name="questionform" novalidate  >
 
                               <div ng-repeat="question in questions" class="col-md-11 col-md-offset-1 ques-margin">
-                                  <p class="f-20" >Question - {{$index+1}}</p>
-                                  <p  class="green-font f-16">{{question.ques}}</p>
+                                  <p class="f-16 m-b-0 darkblue-color" ><i class="fa fa-question-circle" aria-hidden="true"></i>&nbsp;Question - {{$index+1}}</p>
+                                  <p  class="green-font f-18 m-b-0">{{question.ques}}</p>
 
-                                  <div class="radio">
+                                  <div class="radio f-18">
                                     <label>
                                       <input type="radio" name="q{{$index+1}}" ng-model="submit_answer[$index+1]" value="a" required>
                                       {{question.a}}
                                     </label>
                                   </div>
 
-                                  <div class="radio">
+                                  <div class="radio f-18">
                                     <label>
                                       <input type="radio" name="q{{$index+1}}" ng-model="submit_answer[$index+1]" value="b" required>
                                       {{question.b}}
                                     </label>
                                   </div>
 
-                                  <div class="radio">
+                                  <div class="radio f-18">
                                     <label>
                                       <input type="radio" name="q{{$index+1}}" ng-model="submit_answer[$index+1]" value="c" required>
                                       {{question.c}}
                                     </label>
                                   </div>
 
-                                  <div class="radio">
+                                  <div class="radio f-18">
                                     <label>
                                       <input type="radio" name="q{{$index+1}}" ng-model="submit_answer[$index+1]" value="d" required>
                                       {{question.d}}
                                     </label>
                                   </div>
 
-
-
-
-                                  <!-- <span></span><input type="radio" name="q{{$index+1}}" ng-model="submit_answer[$index+1]" value="d" required><span class="blue-font f-18">{{question.d}}</span><br> -->
-
                                   <small style="color: darkred" ng-show="!q{{$index+1}}_response && valid && submitted ">Wrong Answer</small>
                                   <small style="color: darkred" ng-show="questionform.q{{$index+1}}.$invalid && submitted ">* Please answer this question</small>
 
                               </div>
 
-
-                              <div class="submit-btn text-right" >
-                                 <button type="submit" class="btn btn-primary">Submit</button>
+                              <div class="submit-btn text-right" ng-hide="compelete_module1" >
+                                 <button type="submit" class="btn btn-primary submit-button success-btn">Submit</button>
                               </div>
-
                                   <span style="display:none" >{{ questionformValid = questionform.$valid}}</span>
                               </form>
+                          </div>
+
+
+                        </div>
+                      </div>
+
+
+                      <div class="panel panel-default" ng-show="showdesc" >
+                        <div class="panel-heading">
+                          <div class="row"  >
+                            <div class="col-md-6 f-18">
+                              Course 1 Module 1 Description
+                            </div>
+                            <div class="col-md-4 text-right">
+                          <p class="danger" ng-hide="m1ques_active || compelete_module1" >*First watch complete video to give test</p>
+                            </div>
+                            <div class="col-md-2 text-right">
+
+                              <button class="btn btn-primary" ng-disabled="!(m1ques_active || compelete_module1)" ng-click=toggleview() >
+
+                                <span ng-hide="compelete_module1">Give Test&nbsp;<i class="fa fa-pencil-square-o" aria-hidden="true"></i></span>
+                                <span ng-show="compelete_module1" >Show Questions</span>
+
+                              </button>
+                            </div>
+
+                          </div>
+
+
+                        </div>
+
+                        <div class="panel-body" >
+                          <div class="row"  >
+
+                            <p class="m-l-10">Its module description</p>
 
                           </div>
 
@@ -130,12 +173,12 @@
                     <div ng-show="tab=='second'">
 
                       <div class="panel panel-default" >
-                        <div class="panel-heading">Course 1 Module 2</div>
+                        <div class="panel-heading f-18">Course 1 Module 2 <span class="text-success" ng-show="compelete_module2">&nbsp;Completed&nbsp;<i class="fa fa-check-circle" aria-hidden="true"></i></span></div>
                         <div class="panel-body">
 
                         <div class="row">
                             <div class="col-md-8 col-md-offset-1 m-l-0 ">
-                                <video class="border" id="module2" name="module2" width="auto" height="600px" poster="http://pepsicodemo.scaledesk.com/pepsico-demo/img/video-preview.png" controls="">
+                                <video class="border" id="module2" name="module2" width="auto" height="500px" poster="http://pepsicodemo.scaledesk.com/pepsico-demo/img/video-preview.png" controls="">
                                     <!-- <source src="http://pepsico.scaledesk.com/gitvid/Board%20Room.mp4" type="video/mp4"> -->
                                       <source src="http://pepsico.scaledesk.com/pepsi_videos/treasury_2.mp4" type="video/mp4">
 
@@ -148,8 +191,20 @@
                     </div>
 
 
-                    <div class="panel panel-default" ng-show="m2ques_active || compelete_module2" >
-                      <div class="panel-heading">Course 1 Module 2 Questions</div>
+                    <div class="panel panel-default" ng-show="!showdesc" >
+                      <div class="panel-heading f-18">
+
+                        <div class="row" >
+                          <div class="col-md-9 f-18">
+                            Course 1 Module 2 Questions
+                          </div>
+                          <div class="col-md-3 text-right">
+                            <button class="btn btn-primary " ng-click=toggleview() >Description&nbsp;<i class="fa fa-pencil" aria-hidden="true"></i></button>
+                          </div>
+
+                        </div>
+
+                      </div>
                       <div class="panel-body" >
 
 
@@ -160,32 +215,32 @@
 
 
                                 <div ng-repeat="question in questions" class="col-md-11 col-md-offset-1 ques-margin">
-                                    <p class="f-20" >Question - {{$index+1}}</p>
-                                    <p class="green-font f-16">{{question.ques}}</p>
+                                    <p class="f-16 m-b-0 darkblue-color" ><i class="fa fa-question-circle" aria-hidden="true"></i>&nbsp;Question - {{$index+1}}</p>
+                                    <p class="green-font f-18 m-b-0">{{question.ques}}</p>
 
 
-                                    <div class="radio">
+                                    <div class="radio f-18">
                                       <label>
                                         <input type="radio" name="q{{$index+1}}" ng-model="submit_answer[$index+1]" value="a" required>
                                         {{question.a}}
                                       </label>
                                     </div>
 
-                                    <div class="radio">
+                                    <div class="radio f-18">
                                       <label>
                                         <input type="radio" name="q{{$index+1}}" ng-model="submit_answer[$index+1]" value="b" required>
                                         {{question.b}}
                                       </label>
                                     </div>
 
-                                    <div class="radio">
+                                    <div class="radio f-18">
                                       <label>
                                         <input type="radio" name="q{{$index+1}}" ng-model="submit_answer[$index+1]" value="c" required>
                                         {{question.c}}
                                       </label>
                                     </div>
 
-                                    <div class="radio">
+                                    <div class="radio f-18">
                                       <label>
                                         <input type="radio" name="q{{$index+1}}" ng-model="submit_answer[$index+1]" value="d" required>
                                         {{question.d}}
@@ -201,8 +256,8 @@
 
                                 </div>
 
-                                <div class="submit-btn text-right" >
-                                   <button type="submit" class="btn btn-primary">Submit</button>
+                                <div class="submit-btn text-right" ng-hide="compelete_module2" >
+                                   <button type="submit" class="btn btn-primary submit-button success-btn">Submit</button>
                                 </div>
 
                                 <span style="display:none" >{{ questionformValid = questionform.$valid}}</span>
@@ -215,20 +270,50 @@
                </div>
 
 
+               <div class="panel panel-default" ng-show="showdesc" >
+                 <div class="panel-heading">
+                   <div class="row"  >
+                     <div class="col-md-6 f-18">
+                       Course 1 Module 2 Description
+                     </div>
+                     <div class="col-md-4 text-right">
+                   <p class="danger" ng-hide="m2ques_active || compelete_module2" >*First watch complete video to give test</p>
+                     </div>
+                     <div class="col-md-2 text-right">
+
+                       <button class="btn btn-primary" ng-disabled="!(m2ques_active || compelete_module2)" ng-click=toggleview() >
+                         <span ng-hide="compelete_module2">Give Test&nbsp;<i class="fa fa-pencil-square-o" aria-hidden="true"></i></span>
+                         <span ng-show="compelete_module2" >Show Questions</span>
+                      </button>
+                     </div>
+
+                   </div>
 
 
+                 </div>
+
+                 <div class="panel-body" >
+                   <div class="row"  >
+
+                     <p class="m-l-10">Its module description</p>
+
+                   </div>
+
+
+                 </div>
+               </div>
 
                     </div>
 
                     <div ng-show="tab=='third'">
 
                       <div class="panel panel-default" >
-                        <div class="panel-heading">Course 1 Module 3</div>
+                        <div class="panel-heading f-18">Course 1 Module 3 <span class="text-success" ng-show="compelete_module3">&nbsp;Completed&nbsp;<i class="fa fa-check-circle" aria-hidden="true"></i></span></div>
                         <div class="panel-body">
 
                         <div class="row">
                             <div class="col-md-8 col-md-offset-1 m-l-0">
-                                <video class="border" id="module3" name="module3" width="auto" height="600px" poster="http://pepsicodemo.scaledesk.com/pepsico-demo/img/video-preview.png" controls="">
+                                <video class="border" id="module3" name="module3" width="auto" height="500px" poster="http://pepsicodemo.scaledesk.com/pepsico-demo/img/video-preview.png" controls="">
                                   <source src="http://pepsico.scaledesk.com/pepsi_videos/treasury3.mp4" type="video/mp4">
                               </video>
                             </div>
@@ -240,8 +325,22 @@
 
 
 
-              <div class="panel panel-default" ng-show="m3ques_active ||compelete_module3" >
-                <div class="panel-heading">Course 1 Module 3 Questions</div>
+              <div class="panel panel-default" ng-show="!showdesc" >
+
+                <div class="panel-heading f-18">
+
+                  <div class="row" >
+                    <div class="col-md-9 f-18">
+                      Course 1 Module 3 Questions
+                    </div>
+                    <div class="col-md-3 text-right">
+                      <button class="btn btn-primary" ng-click=toggleview() >Description&nbsp;<i class="fa fa-pencil" aria-hidden="true"></i></button>
+                    </div>
+
+                  </div>
+
+                </div>
+
                 <div class="panel-body" >
 
                         <div class="row" >
@@ -251,32 +350,32 @@
 
 
                                 <div ng-repeat="question in questions" class="col-md-11 col-md-offset-1 ques-margin">
-                                    <p class="f-20" >Question - {{$index+1}}</p>
-                                    <p class="green-font f-16">{{question.ques}}</p>
+                                    <p class="f-16 m-b-0 darkblue-color" ><i class="fa fa-question-circle" aria-hidden="true"></i>&nbsp;Question - {{$index+1}}</p>
+                                    <p class="green-font f-18 m-b-0">{{question.ques}}</p>
 
 
-                                    <div class="radio">
+                                    <div class="radio f-18">
                                       <label>
                                         <input type="radio" name="q{{$index+1}}" ng-model="submit_answer[$index+1]" value="a" required>
                                         {{question.a}}
                                       </label>
                                     </div>
 
-                                    <div class="radio">
+                                    <div class="radio f-18">
                                       <label>
                                         <input type="radio" name="q{{$index+1}}" ng-model="submit_answer[$index+1]" value="b" required>
                                         {{question.b}}
                                       </label>
                                     </div>
 
-                                    <div class="radio">
+                                    <div class="radio f-18">
                                       <label>
                                         <input type="radio" name="q{{$index+1}}" ng-model="submit_answer[$index+1]" value="c" required>
                                         {{question.c}}
                                       </label>
                                     </div>
 
-                                    <div class="radio">
+                                    <div class="radio f-18">
                                       <label>
                                         <input type="radio" name="q{{$index+1}}" ng-model="submit_answer[$index+1]" value="d" required>
                                         {{question.d}}
@@ -291,8 +390,8 @@
 
                                 </div>
 
-                                <div class="submit-btn text-right" >
-                                   <button type="submit" class="btn btn-primary">Submit</button>
+                                <div class="submit-btn text-right" ng-hide="compelete_module3" >
+                                   <button type="submit" class="btn btn-primary submit-button success-btn">Submit</button>
                                 </div>
 
                                 <span style="display:none" >{{ questionformValid = questionform.$valid}}</span>
@@ -306,6 +405,38 @@
 
 
 
+                                    <div class="panel panel-default" ng-show="showdesc" >
+                                      <div class="panel-heading">
+                                        <div class="row"  >
+                                          <div class="col-md-6 f-18">
+                                            Course 1 Module 3 Description
+                                          </div>
+                                          <div class="col-md-4 text-right">
+                                        <p class="danger" ng-hide="m3ques_active || compelete_module3" >*First watch complete video to give test</p>
+                                          </div>
+                                          <div class="col-md-2 text-right">
+
+                                            <button class="btn btn-primary " ng-disabled="!(m3ques_active || compelete_module3)" ng-click=toggleview() >
+                                              <span ng-hide="compelete_module3">Give Test&nbsp;<i class="fa fa-pencil-square-o" aria-hidden="true"></i></span>
+                                              <span ng-show="compelete_module3" >Show Questions</span>
+                                           </button>
+                                          </div>
+
+                                        </div>
+
+
+                                      </div>
+
+                                      <div class="panel-body" >
+                                        <div class="row"  >
+
+                                          <p class="m-l-10">Its module description</p>
+
+                                        </div>
+
+
+                                      </div>
+                                    </div>
 
 
                     </div>
@@ -313,12 +444,12 @@
                     <div ng-show="tab=='fourth'">
 
                       <div class="panel panel-default" >
-                        <div class="panel-heading">Course 1 Module 4</div>
+                        <div class="panel-heading f-18">Course 1 Module 4 <span class="text-success" ng-show="compelete_module4">&nbsp;Completed&nbsp;<i class="fa fa-check-circle" aria-hidden="true"></i></span></div>
                         <div class="panel-body">
 
                         <div class="row">
                             <div class="col-md-8 col-md-offset-1 m-l-0">
-                                <video class="border" id="module4" name="module4" width="auto" height="600px" poster="http://pepsicodemo.scaledesk.com/pepsico-demo/img/video-preview.png" controls="">
+                                <video class="border" id="module4" name="module4" width="auto" height="500px" poster="http://pepsicodemo.scaledesk.com/pepsico-demo/img/video-preview.png" controls="">
                                   <source src="http://pepsico.scaledesk.com/pepsi_videos/treasury4.mp4" type="video/mp4">
                               </video>
                             </div>
@@ -329,8 +460,22 @@
 
 
 
-                    <div class="panel panel-default" ng-show="m4ques_active ||compelete_module4" >
-                      <div class="panel-heading">Course 1 Module 4 Questions</div>
+                    <div class="panel panel-default" ng-show="!showdesc" >
+                      <div class="panel-heading">
+
+                        <div class="row" >
+
+                          <div class="col-md-9 f-18">
+                            Course 1 Module 4 Questions
+                          </div>
+                          <div class="col-md-3 text-right">
+                            <button class="btn btn-primary" ng-click=toggleview() >Description&nbsp;<i class="fa fa-pencil" aria-hidden="true"></i></button>
+                          </div>
+
+                        </div>
+
+
+                      </div>
                       <div class="panel-body" >
 
 
@@ -341,31 +486,31 @@
 
 
                                 <div ng-repeat="question in questions" class="col-md-11 col-md-offset-1 ques-margin">
-                                    <p class="f-20" >Question - {{$index+1}}</p>
-                                    <p class="green-font f-16">{{question.ques}}</p>
+                                    <p class="f-16 m-b-0 darkblue-color" ><i class="fa fa-question-circle" aria-hidden="true"></i>&nbsp;Question - {{$index+1}}</p>
+                                    <p class="green-font f-18 m-b-0">{{question.ques}}</p>
 
-                                    <div class="radio">
+                                    <div class="radio f-18">
                                       <label>
                                         <input type="radio" name="q{{$index+1}}" ng-model="submit_answer[$index+1]" value="a" required>
                                         {{question.a}}
                                       </label>
                                     </div>
 
-                                    <div class="radio">
+                                    <div class="radio f-18">
                                       <label>
                                         <input type="radio" name="q{{$index+1}}" ng-model="submit_answer[$index+1]" value="b" required>
                                         {{question.b}}
                                       </label>
                                     </div>
 
-                                    <div class="radio">
+                                    <div class="radio f-18">
                                       <label>
                                         <input type="radio" name="q{{$index+1}}" ng-model="submit_answer[$index+1]" value="c" required>
                                         {{question.c}}
                                       </label>
                                     </div>
 
-                                    <div class="radio">
+                                    <div class="radio f-18">
                                       <label>
                                         <input type="radio" name="q{{$index+1}}" ng-model="submit_answer[$index+1]" value="d" required>
                                         {{question.d}}
@@ -380,8 +525,8 @@
 
                                 </div>
 
-                                <div class="submit-btn text-right" >
-                                   <button type="submit" class="btn btn-primary">Submit</button>
+                                <div class="submit-btn text-right" ng-hide="compelete_module4" >
+                                   <button type="submit" class="btn btn-primary submit-button success-btn">Submit</button>
                                 </div>
 
                                 <span style="display:none" >{{ questionformValid = questionform.$valid}}</span>
@@ -392,6 +537,39 @@
                         </div>
 
                       </div>
+                   </div>
+
+                   <div class="panel panel-default" ng-show="showdesc" >
+                     <div class="panel-heading">
+                       <div class="row"  >
+                         <div class="col-md-6 f-18">
+                           Course 1 Module 4 Description
+                         </div>
+                         <div class="col-md-4 text-right">
+                       <p class="danger" ng-hide="m4ques_active || compelete_module4" >*First watch complete video to give test</p>
+                         </div>
+                         <div class="col-md-2 text-right">
+
+                           <button class="btn btn-primary" ng-disabled="!(m4ques_active || compelete_module4)" ng-click=toggleview() >
+                             <span ng-hide="compelete_module4">Give Test&nbsp;<i class="fa fa-pencil-square-o" aria-hidden="true"></i></span>
+                             <span ng-show="compelete_module4" >Show Questions</span>
+                          </button>
+                         </div>
+
+                       </div>
+
+
+                     </div>
+
+                     <div class="panel-body" >
+                       <div class="row"  >
+
+                         <p class="m-l-10">Its module description</p>
+
+                       </div>
+
+
+                     </div>
                    </div>
 
 
@@ -416,7 +594,7 @@
 
                                 <div ng-repeat="question in questions" class="col-md-11 col-md-offset-1" style="margin-top: 20px;">
                                     <p class="f-20" >Question - {{$index+1}}</p>
-                                    <p class="green-font f-16">{{question.ques}}</p>
+                                    <p class="green-font f-16 m-b-0">{{question.ques}}</p>
 
                                     <span></span><input type="radio" name="q{{$index+1}}" ng-model="submit_answer[$index+1]" value="a" required><span class="blue-font f-18">{{question.a}}</span><br>
                                     <span></span><input type="radio" name="q{{$index+1}}" ng-model="submit_answer[$index+1]" value="b" required><span class="blue-font f-18">{{question.b}}</span><br>
@@ -431,7 +609,7 @@
                                 </div>
 
                                 <span class="submit-btn" >
-                                   <button type="submit" class="btn btn-primary submit-button">Submit</button>
+                                   <button type="submit" class="btn btn-primary submit-button success-btn">Submit</button>
                                 </span>
 
                                 <span style="display:none" >{{ questionformValid = questionform.$valid}}</span>

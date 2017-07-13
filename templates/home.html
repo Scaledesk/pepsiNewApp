@@ -3,43 +3,37 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="intro-message">
-                            <h1>Get Started</h1>
-                            <h3>Enter your name and employee id to continue!</h3>
+                            <h1 class="home-msg">Get Started</h1>
+                            <h3 class="home-msg">Enter your name and employee id to continue</h3>
                             <hr class="intro-divider">
 
                             <div style="padding-left:30%;padding-right:30%;text-align:left !important;">
+                              <div class="log-form">
                                 <form name="login_form" ng-submit="loginemp(user)" novalidate>
                                     <div class="form-group">
-                                        <label for="name">Name<span ng-show="login_form.eid.$invalid && submitted" style="color: red">*</span>:</label>
-                                        <input type="text" id="uname" name="uname" ng-model="user.name" class="form-control" id="name" maxlength="20" required>
+                                        <label for="name"><b style="color:#6ae86f" class="f-20">Name</b></label>
+                                        <input style="color:white"  type="text" id="uname" name="uname" ng-model="user.name" class="form-control" id="name" maxlength="20" required>
                                     </div>
                                     <small style="color: red" ng-show="login_form.uname.$invalid && submitted">Name is required</small>
 
 
                                     <div class="form-group">
-                                        <label for="empid">Employee ID<span ng-show="login_form.eid.$invalid && submitted" style="color: red">*</span>:</label>
-                                        <input type="text" id="eid" name="eid" ng-model="user.empid" class="form-control" id="empid" maxlength="20" required>
+                                        <label for="empid"><b style="color:#6ae86f" class="f-20">Employee ID</b></label>
+                                        <input style="color:white" type="text" id="eid" name="eid" ng-model="user.empid" class="form-control" id="empid" maxlength="20" required>
                                     </div>
                                     <small style="color:red" ng-show="login_form.eid.$invalid && submitted">Employee ID is required</small>
 
 
                                     <span style="display:none" >{{ user.loginForm = login_form.$valid}}</span>
 
-                                      <div  class="text-center"><button style="height:40px;width:70px;font-size: medium" type="submit" class="btn btn-primary">Login</button></div>
+                                      <div  class="text-center "><button type="submit" class="btn btn-primary f-20">Login</button></div>
+
+
                                 </form>
+                              </div>
                             </div>
 
-                            <!--<ul class="list-inline intro-social-buttons">
-                                <li>
-                                    <a href="https://twitter.com/SBootstrap" class="btn btn-default btn-lg"><i class="fa fa-twitter fa-fw"></i> <span class="network-name">Twitter</span></a>
-                                </li>
-                                <li>
-                                    <a href="https://github.com/IronSummitMedia/startbootstrap" class="btn btn-default btn-lg"><i class="fa fa-github fa-fw"></i> <span class="network-name">Github</span></a>
-                                </li>
-                                <li>
-                                    <a href="#" class="btn btn-default btn-lg"><i class="fa fa-linkedin fa-fw"></i> <span class="network-name">Linkedin</span></a>
-                                </li>
-                            </ul>-->
+
                         </div>
                     </div>
                 </div>

@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <!--<base href="/">-->
-    <title>Landing Page - Start Bootstrap Theme</title>
+    <title>Pepsico</title>
 
     <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -33,25 +33,23 @@
 <body>
 
     <!-- Navigation -->
-    <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
-        <div class="container topnav">
+    <nav class="navbar navbar-default navbar-fixed-top topnav bg-nav" role="navigation">
+        <div class="container-fluid topnav">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <!-- <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
-                </button>
-                <a ng-show=idemp class="navbar-brand topnav" style="color:#337ab7;">Employee Name : {{name}}</a>
-                <a ng-show=!idemp class="navbar-brand topnav" style="color:#337ab7;">Welcome User</a>
+                </button> -->
+                <a ng-show=idemp class="navbar-brand topnav darkblue-color f-16" ><i class="fa fa-user" aria-hidden="true"></i>&nbsp;{{name}}</a>
+                <a ng-show=!idemp class="navbar-brand topnav darkblue-color f-16" >Welcome <i class="fa fa-user" aria-hidden="true"></i> User</a>
 
 
             </div>
-            <div ng-show=idemp ng-controller="HomeCtrl" class="pull-right">
-                <button style="margin-top:10px;" ng-click="logout();" class="btn btn-primary">Logout</button>
-
-
+            <div ng-show=idemp ng-controller="HomeCtrl" class="text-right">
+                <button ng-click="logout();" class="btn logout-btn">Logout&nbsp;<i class="fa fa-sign-out" aria-hidden="true"></i></button>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -76,15 +74,14 @@
 
     <!-- Footer -->
     <!--<footer class="navbar-fixed-bottom">-->
-    <footer>
+    <!-- <footer>
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <!-- <p class="copyright text-muted small">Copyright &copy; Your Company 2014. All Rights Reserved</p> -->
                 </div>
             </div>
         </div>
-    </footer>
+    </footer> -->
     <!-- jQuery -->
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap Core JavaScript -->
