@@ -25,12 +25,12 @@
                         <a href="" id="tab3" class="list-group-item text-center " ng-class="{'disabled':!compelete_module2}" ng-click="tab='third';chkstatus(3);">
                   Module 3
                 </a>
-                        <a href="" id="tab4" class="list-group-item text-center" ng-class="{'disabled':!compelete_module3}" ng-click="tab='fourth';chkstatus(4);">
+                        <!-- <a href="" id="tab4" class="list-group-item text-center" ng-class="{'disabled':!compelete_module3}" ng-click="tab='fourth';chkstatus(4);">
                   Module 4
                 </a>
                         <a href="" id="tab5" class="list-group-item text-center" ng-class="{'disabled':!compelete_module4}" ng-click="tab='fifth';chkstatus(5);">
                   Module 5
-                </a>
+                </a> -->
                     </div>
                 </div>
 
@@ -56,7 +56,6 @@
                         </div>
                         </div>
 
-                      <!-- <div class="panel panel-default" ng-show="(m1ques_active || compelete_module1) && !showdesc" > -->
                         <div class="panel panel-default" ng-show="!showdesc" >
 
                         <div class="panel-heading">
@@ -308,7 +307,7 @@
                     <div ng-show="tab=='third'">
 
                       <div class="panel panel-default" >
-                        <div class="panel-heading f-18">Course 1 Module 3 <span class="text-success" ng-show="compelete_module3">&nbsp;Completed&nbsp;<i class="fa fa-check-circle" aria-hidden="true"></i></span></div>
+                        <div class="panel-heading f-18">Course 1 Module 3 <span class="text-success" ng-show="course1status">&nbsp;Completed&nbsp;<i class="fa fa-check-circle" aria-hidden="true"></i></span></div>
                         <div class="panel-body">
 
                         <div class="row">
@@ -390,7 +389,7 @@
 
                                 </div>
 
-                                <div class="submit-btn text-right" ng-hide="compelete_module3" >
+                                <div class="submit-btn text-right" ng-hide="course1status" >
                                    <button type="submit" class="btn btn-primary submit-button success-btn">Submit</button>
                                 </div>
 
@@ -412,13 +411,13 @@
                                             Course 1 Module 3 Description
                                           </div>
                                           <div class="col-md-4 text-right">
-                                        <p class="danger" ng-hide="m3ques_active || compelete_module3" >*First watch complete video to give test</p>
+                                        <p class="danger" ng-hide="m3ques_active || course1status" >*First watch complete video to give test</p>
                                           </div>
                                           <div class="col-md-2 text-right">
 
-                                            <button class="btn btn-primary " ng-disabled="!(m3ques_active || compelete_module3)" ng-click=toggleview() >
-                                              <span ng-hide="compelete_module3">Give Test&nbsp;<i class="fa fa-pencil-square-o" aria-hidden="true"></i></span>
-                                              <span ng-show="compelete_module3" >Show Questions</span>
+                                            <button class="btn btn-primary " ng-disabled="!(m3ques_active || course1status)" ng-click=toggleview() >
+                                              <span ng-hide="course1status">Give Test&nbsp;<i class="fa fa-pencil-square-o" aria-hidden="true"></i></span>
+                                              <span ng-show="course1status" >Show Questions</span>
                                            </button>
                                           </div>
 
@@ -440,7 +439,7 @@
 
 
                     </div>
-
+<!--
                     <div ng-show="tab=='fourth'">
 
                       <div class="panel panel-default" >
@@ -480,7 +479,6 @@
 
 
                         <div class="row"  >
-                            <!--<div class="row"  >-->
 
                             <form ng-submit="submitanswer(submit_answer,questionformValid,4)" name="questionform" novalidate  >
 
@@ -573,9 +571,9 @@
                    </div>
 
 
-                    </div>
+                    </div> -->
 
-                    <div ng-show="tab=='fifth'">
+                    <!-- <div ng-show="tab=='fifth'">
                         <div class="row">
                             <div class="col-md-8 col-md-offset-1">
                                 <video class="border" id="module5" name="module5" width="auto" height="400px" poster="http://pepsicodemo.scaledesk.com/pepsico-demo/img/video-preview.png" controls="">
@@ -587,7 +585,6 @@
 
 
                         <div class="row" ng-show="m5ques_active" style="background-color:#efeeee;" >
-                            <!--<div class="row"  >-->
 
                             <form ng-submit="submitanswer(submit_answer,questionformValid,5)" name="questionform" novalidate  >
 
@@ -620,7 +617,7 @@
 
 
 
-                    </div>
+                    </div> -->
 
 
 

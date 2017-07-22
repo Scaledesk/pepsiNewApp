@@ -104,27 +104,27 @@ app.controller('HomeCtrl', function($scope, $rootScope, $location, $localStorage
 
                 $localStorage.compelete_module1 = false;
                 $localStorage.compelete_module2 = false;
-                $localStorage.compelete_module3 = false;
-                $localStorage.compelete_module4 = false;
+                // $localStorage.compelete_module3 = false;
+                // $localStorage.compelete_module4 = false;
 
                 $localStorage.compelete2_module1 = false;
                 $localStorage.compelete2_module2 = false;
                 $localStorage.compelete2_module3 = false;
 
 
-                if ($localStorage.c1_currentmodule == 5) {
-                    $localStorage.compelete_module1 = true;
-                    $localStorage.compelete_module2 = true;
-                    $localStorage.compelete_module3 = true;
-                    $localStorage.compelete_module4 = true;
-
-                }
-                else if ($localStorage.c1_currentmodule == 4) {
-                    $localStorage.compelete_module1 = true;
-                    $localStorage.compelete_module2 = true;
-                    $localStorage.compelete_module3 = true;
-                }
-                else if ($localStorage.c1_currentmodule == 3) {
+                // if ($localStorage.c1_currentmodule == 5) {
+                //     $localStorage.compelete_module1 = true;
+                //     $localStorage.compelete_module2 = true;
+                //     $localStorage.compelete_module3 = true;
+                //     $localStorage.compelete_module4 = true;
+                //
+                // }
+                // else if ($localStorage.c1_currentmodule == 4) {
+                //     $localStorage.compelete_module1 = true;
+                //     $localStorage.compelete_module2 = true;
+                //     $localStorage.compelete_module3 = true;
+                // }
+                if ($localStorage.c1_currentmodule == 3) {
                     $localStorage.compelete_module1 = true;
                     $localStorage.compelete_module2 = true;
                 }
@@ -325,23 +325,11 @@ $scope.generatecert =function(){
 
 });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 app.controller('Course1Ctrl', function($scope,$sce, $route, $location, $localStorage,$rootScope,pepsiservice) {
 
     $rootScope.idemp = $localStorage.empid;
     $rootScope.name = $localStorage.name;
+    $rootScope.course1status= $localStorage.c1status;
 
     if ($localStorage.empid == '' || $localStorage.empid == undefined) {
         $location.path('/');
@@ -495,65 +483,86 @@ $scope.toggleview=function(){
 
                    }else if(video==3){
 
-                       $scope.compelete_module3 = true;
-                       $localStorage.compelete_module3 = true;
-                       $localStorage.course1.module3 = true;
-                       $localStorage.course1.module3_current = 0;
+                     if($localStorage.c1status)
+                     {
+                         alert('You have already cleared Course1 ,Please generate your certificate');
+                         $location.path('/course');
 
-                       $('#tab4').addClass("active");
-                       $('#tab3').removeClass("active");
-                       $scope.tab = 'fourth';
+                     }
 
 
-                       $scope.vid = document.getElementById('module4');
+                     else{
+                         $scope.compelete_module3 = true;
+                         $localStorage.compelete_module3 = true;
+                         $localStorage.course1.module3 = true;
+                         $localStorage.course1.module3_current = 0;
+                         $localStorage.c1status=true;
+                         $rootScope.course1status= $localStorage.c1status;
+                         alert('Congrats you have cleared Course 1 .Please generate your certificate');
+                         $location.path('/course');
 
-                       $scope.id = 'module4';
+                     }
 
-                       $scope.video_status2();
-                       alert('Congrats you have cleared this test module . Now you can explore next module');
-
-                   }else if(video==4){
-
-                       $scope.compelete_module4 = true;
-                       $localStorage.compelete_module4=true;
-                       $localStorage.course1.module4 = true;
-                       $localStorage.course1.module4_current = 0;
-
-                       $('#tab5').addClass("active");
-                       $('#tab4').removeClass("active");
-                       $scope.tab = 'fifth';
-
-
-                       $scope.vid = document.getElementById('module5');
-
-                       $scope.id = 'module5';
-                       $scope.video_status2();
-                       alert('Congrats you have cleared this test module . Now you can explore next module');
-
-                   }else if(video==5){
-
-                       if($localStorage.c1status)
-                       {
-                           alert('You have already cleared Course1 ,Please generate your certificate');
-                           $location.path('/course');
-
-                       }
-
-
-                       else{
-                           $scope.compelete_module5 = true;
-                           $localStorage.compelete_module5 = true;
-                           $localStorage.course1.module5 = true;
-                           $localStorage.course1.module5_current = 0;
-                           $localStorage.c1status=true;
-                           $rootScope.course1status= $localStorage.c1status;
-                           alert('Congrats you have cleared Course 1 .Please generate your certificate');
-                           $location.path('/course');
-
-                       }
-
+                      //  $scope.compelete_module3 = true;
+                      //  $localStorage.compelete_module3 = true;
+                      //  $localStorage.course1.module3 = true;
+                      //  $localStorage.course1.module3_current = 0;
+                       //
+                      //  $('#tab4').addClass("active");
+                      //  $('#tab3').removeClass("active");
+                      //  $scope.tab = 'fourth';
+                       //
+                       //
+                      //  $scope.vid = document.getElementById('module4');
+                       //
+                      //  $scope.id = 'module4';
+                       //
+                      //  $scope.video_status2();
+                      //  alert('Congrats you have cleared this test module . Now you can explore next module');
 
                    }
+                //  else if(video==4){
+                   //
+                  //      $scope.compelete_module4 = true;
+                  //      $localStorage.compelete_module4=true;
+                  //      $localStorage.course1.module4 = true;
+                  //      $localStorage.course1.module4_current = 0;
+                   //
+                  //      $('#tab5').addClass("active");
+                  //      $('#tab4').removeClass("active");
+                  //      $scope.tab = 'fifth';
+                   //
+                   //
+                  //      $scope.vid = document.getElementById('module5');
+                   //
+                  //      $scope.id = 'module5';
+                  //      $scope.video_status2();
+                  //      alert('Congrats you have cleared this test module . Now you can explore next module');
+                   //
+                  //  }else if(video==5){
+                   //
+                  //      if($localStorage.c1status)
+                  //      {
+                  //          alert('You have already cleared Course1 ,Please generate your certificate');
+                  //          $location.path('/course');
+                   //
+                  //      }
+                   //
+                   //
+                  //      else{
+                  //          $scope.compelete_module5 = true;
+                  //          $localStorage.compelete_module5 = true;
+                  //          $localStorage.course1.module5 = true;
+                  //          $localStorage.course1.module5_current = 0;
+                  //          $localStorage.c1status=true;
+                  //          $rootScope.course1status= $localStorage.c1status;
+                  //          alert('Congrats you have cleared Course 1 .Please generate your certificate');
+                  //          $location.path('/course');
+                   //
+                  //      }
+                   //
+                   //
+                  //  }
                }
 
                 else{
@@ -600,44 +609,55 @@ $scope.toggleview=function(){
 
     $scope.compelete_module1=$localStorage.compelete_module1;
     $scope.compelete_module2=$localStorage.compelete_module2;
-    $scope.compelete_module3=$localStorage.compelete_module3;
-    $scope.compelete_module4=$localStorage.compelete_module4;
+    // $scope.compelete_module3=$localStorage.compelete_module3;
+    // $scope.compelete_module4=$localStorage.compelete_module4;
 
     if ($localStorage.compelete_module1 == true) {
         if ($localStorage.compelete_module2 == true) {
-            if ($localStorage.compelete_module3 == true) {
-                if ($localStorage.compelete_module4 == true) {
-                    $scope.tab = 'fifth';
-                    $('#tab5').addClass("active");
-                    $('#tab1').removeClass("active");
-                    $('#tab2').removeClass("active");
-                    $('#tab3').removeClass("active");
-                    $('#tab4').removeClass("active");
-                    //$scope.getvideourl(5);
-                    $scope.vid = document.getElementById('module5');
-                    $scope.id = 'module5';
-                    $scope.currentTime = $localStorage.course1.module5_current;
-                } else {
-                    $scope.tab = 'fourth';
-                    $('#tab4').addClass("active");
-                    $('#tab3').removeClass("active");
-                    $('#tab2').removeClass("active");
-                    $('#tab1').removeClass("active");
-                    //$scope.getvideourl(4);
-                    $scope.vid = document.getElementById('module4');
-                    $scope.id = 'module4';
-                    $scope.currentTime = $localStorage.course1.module4_current;
-                }
-            } else {
-                $scope.tab = 'third';
-                $('#tab3').addClass("active");
-                $('#tab2').removeClass("active");
-                $('#tab1').removeClass("active");
-                //$scope.getvideourl(3);
-                $scope.vid = document.getElementById('module3');
-                $scope.id = 'module3';
-                $scope.currentTime = $localStorage.course1.module3_current;
-            }
+
+             $scope.tab = 'third';
+             $('#tab3').addClass("active");
+             $('#tab2').removeClass("active");
+             $('#tab1').removeClass("active");
+             $scope.vid = document.getElementById('module3');
+             $scope.id = 'module3';
+             $scope.currentTime = $localStorage.course1.module3_current;
+            // if ($localStorage.compelete_module3 == true) {
+            //     // if ($localStorage.compelete_module4 == true) {
+            //     //     $scope.tab = 'fifth';
+            //     //     $('#tab5').addClass("active");
+            //     //     $('#tab1').removeClass("active");
+            //     //     $('#tab2').removeClass("active");
+            //     //     $('#tab3').removeClass("active");
+            //     //     $('#tab4').removeClass("active");
+            //     //     //$scope.getvideourl(5);
+            //     //     $scope.vid = document.getElementById('module5');
+            //     //     $scope.id = 'module5';
+            //     //     $scope.currentTime = $localStorage.course1.module5_current;
+            //     // } else {
+            //     //     $scope.tab = 'fourth';
+            //     //     $('#tab4').addClass("active");
+            //     //     $('#tab3').removeClass("active");
+            //     //     $('#tab2').removeClass("active");
+            //     //     $('#tab1').removeClass("active");
+            //     //     //$scope.getvideourl(4);
+            //     //     $scope.vid = document.getElementById('module4');
+            //     //     $scope.id = 'module4';
+            //     //     $scope.currentTime = $localStorage.course1.module4_current;
+            //     // }
+            // } else {
+            //     $scope.tab = 'third';
+            //     $('#tab3').addClass("active");
+            //     $('#tab2').removeClass("active");
+            //     $('#tab1').removeClass("active");
+            //     //$scope.getvideourl(3);
+            //     $scope.vid = document.getElementById('module3');
+            //     $scope.id = 'module3';
+            //     $scope.currentTime = $localStorage.course1.module3_current;
+            // }
+
+
+
         } else {
             $scope.tab = 'second';
             $('#tab2').addClass("active");
@@ -676,17 +696,24 @@ $scope.toggleview=function(){
 
     $scope.m1ques_active=false;
     $scope.m2ques_active=false;
-    $scope.m3ques_active=false;
-    $scope.m4ques_active=false;
-
+    // $scope.m3ques_active=false;
+    // $scope.m4ques_active=false;
 
     if($localStorage.c1status){
-        $scope.getquestions(1,5);
-        $scope.m5ques_active=true;
+        $scope.getquestions(1,3);
+        $scope.m3ques_active=true;
     }
     else{
-        $scope.m5ques_active=false;
+        $scope.m3ques_active=false;
     }
+
+    // if($localStorage.c1status){
+    //     $scope.getquestions(1,5);
+    //     $scope.m5ques_active=true;
+    // }
+    // else{
+    //     $scope.m5ques_active=false;
+    // }
 
 
     $scope.$on('percentage', function(evt, value, id) {
@@ -727,6 +754,25 @@ $scope.toggleview=function(){
             $localStorage.course1.module2_current = value.currentTime;
 
         } else if (id == 'module3') {
+
+
+            // if ($scope.current == $scope.duration) {
+            //
+            //     $scope.getquestions(1,3);
+            //     $scope.$apply(function () {
+            //         $scope.m3ques_active=true;
+            //         $scope.submit_answer = {};
+            //         $scope.submitted=false;
+            //         $scope.questionformValid=false;
+            //         $scope.valid=false;
+            //
+            //         console.log($scope.m3ques_active);
+            //     });
+            //
+            // }
+            // $localStorage.course1.module3_current = value.currentTime;
+
+
             if ($scope.current == $scope.duration) {
 
                 $scope.getquestions(1,3);
@@ -736,44 +782,47 @@ $scope.toggleview=function(){
                     $scope.submitted=false;
                     $scope.questionformValid=false;
                     $scope.valid=false;
-
                     console.log($scope.m3ques_active);
                 });
 
             }
             $localStorage.course1.module3_current = value.currentTime;
-        } else if (id == 'module4') {
-            if ($scope.current == $scope.duration) {
 
-                $scope.getquestions(1,4);
-                $scope.$apply(function () {
-                    $scope.m4ques_active=true;
-                    $scope.submit_answer = {};
-                    $scope.submitted=false;
-                    $scope.questionformValid=false;
-                    $scope.valid=false;
 
-                    console.log($scope.m4ques_active);
-                });
+}
 
-            }
-            $localStorage.course1.module4_current = value.currentTime;
-        } else if (id == 'module5') {
-            if (value.currentTime == value.duration) {
-
-                $scope.getquestions(1,5);
-                $scope.$apply(function () {
-                    $scope.m5ques_active=true;
-                    $scope.submit_answer = {};
-                    $scope.submitted=false;
-                    $scope.questionformValid=false;
-                    $scope.valid=false;
-                    console.log($scope.m5ques_active);
-                });
-
-            }
-            $localStorage.course1.module5_current = value.currentTime;
-        }
+        //  else if (id == 'module4') {
+        //     if ($scope.current == $scope.duration) {
+        //
+        //         $scope.getquestions(1,4);
+        //         $scope.$apply(function () {
+        //             $scope.m4ques_active=true;
+        //             $scope.submit_answer = {};
+        //             $scope.submitted=false;
+        //             $scope.questionformValid=false;
+        //             $scope.valid=false;
+        //
+        //             console.log($scope.m4ques_active);
+        //         });
+        //
+        //     }
+        //     $localStorage.course1.module4_current = value.currentTime;
+        // } else if (id == 'module5') {
+        //     if (value.currentTime == value.duration) {
+        //
+        //         $scope.getquestions(1,5);
+        //         $scope.$apply(function () {
+        //             $scope.m5ques_active=true;
+        //             $scope.submit_answer = {};
+        //             $scope.submitted=false;
+        //             $scope.questionformValid=false;
+        //             $scope.valid=false;
+        //             console.log($scope.m5ques_active);
+        //         });
+        //
+        //     }
+        //     $localStorage.course1.module5_current = value.currentTime;
+        // }
     });
 
 });
@@ -783,6 +832,7 @@ app.controller('Course2Ctrl', function($scope, $location, $localStorage,pepsiser
 
     $rootScope.name = $localStorage.name;
     $rootScope.idemp = $localStorage.empid;
+    $rootScope.course2status= $localStorage.c2status;
 
     $scope.tab = 'first';
     if ($localStorage.name == '' || $localStorage.name == undefined) {
@@ -797,6 +847,11 @@ app.controller('Course2Ctrl', function($scope, $location, $localStorage,pepsiser
     $scope.submitted=false;
     $scope.questionformValid=false;
     $scope.valid=false;
+    $scope.showdesc=true;
+
+    $scope.toggleview=function(){
+      $scope.showdesc=!$scope.showdesc
+    }
 
     $scope.getquestions=function(){
 
