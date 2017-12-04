@@ -164,7 +164,6 @@ app.controller('HomeCtrl', function($scope, $rootScope, $location, $localStorage
 
     };
 
-
     $scope.logout=function(){
 
         delete $localStorage.empid;
