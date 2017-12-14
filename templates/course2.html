@@ -230,7 +230,8 @@
                           <div class="row"  >
 
 
-                        <form ng-submit="submitanswer(submit_answer,questionformValid)" name="questionform" novalidate  >
+                        <!-- <form ng-submit="submitanswer(submit_answer,questionformValid)" name="questionform" novalidate  > -->
+                          <form ng-submit="submitanswer(submit_answer_a,submit_answer_b,submit_answer_c,submit_answer_d,questionformValid)" name="questionform" novalidate  >
 
                               <div ng-repeat="question in questions" class="col-md-11 col-md-offset-1 ques-margin">
 
@@ -238,6 +239,39 @@
                                 <p  class="green-font f-18 m-b-0">{{question.ques}}</p>
 
 
+
+
+                                <div class="checkbox f-18">
+                                  <label>
+                                    <input type="checkbox" name="q{{$index+1}}" ng-false-value="0" value="a" ng-model="submit_answer_a[$index+1]" >
+                                    {{question.a}}
+                                  </label>
+                                </div>
+
+                                <div class="checkbox f-18">
+                                  <label>
+                                    <input type="checkbox" name="q{{$index+1}}" ng-false-value="0" value="b"  ng-model="submit_answer_b[$index+1]" >
+                                    {{question.b}}
+                                  </label>
+                                </div>
+
+                                <div class="checkbox f-18">
+                                  <label>
+                                    <input type="checkbox" name="q{{$index+1}}" ng-false-value="0" value="c" ng-model="submit_answer_c[$index+1]" >
+                                    {{question.c}}
+                                  </label>
+                                </div>
+
+                                <div class="checkbox f-18">
+                                  <label>
+                                    <input type="checkbox" name="q{{$index+1}}" ng-false-value="0" value="d" ng-model="submit_answer_d[$index+1]"  >
+                                    {{question.d}}
+                                  </label>
+                                </div>
+
+
+
+<!--
                                 <div class="radio f-18">
                                   <label>
                                     <input type="radio" name="q{{$index+1}}" ng-model="submit_answer[$index+1]" value="a" required>
@@ -264,7 +298,7 @@
                                     <input type="radio" name="q{{$index+1}}" ng-model="submit_answer[$index+1]" value="d" required>
                                     {{question.d}}
                                   </label>
-                                </div>
+                                </div> -->
 
 
 

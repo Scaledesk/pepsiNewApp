@@ -47,7 +47,9 @@
                             <div class="col-md-9 col-md-offset-1 m-l-0">
                                 <video  class="border" id="module1" name="module1" width="auto" height="500px" poster="http://pepsicodemo.scaledesk.com/pepsico-demo/img/video-preview.png" controls="">
                                   <!-- <source src="{{videourls}}" type="video/mp4"> -->
-                                    <source src="http://52.66.139.3:8023/Working_Capital_1.mp4" type="video/mp4">
+                                    <!-- <source src="http://52.66.139.3:8023/Working_Capital_1.mp4" type="video/mp4"> -->
+                                    <source src="http://52.66.139.3:8023/WorkingCapital2.mp4" type="video/mp4">
+
                               </video>
 
                             </div>
@@ -77,36 +79,36 @@
 
                         <div class="panel-body" >
                           <div class="row"  >
-                              <form ng-submit="submitanswer(submit_answer,questionformValid,1)" name="questionform" novalidate  >
+                              <form ng-submit="submitanswer(submit_answer_a,submit_answer_b,submit_answer_c,submit_answer_d,questionformValid,1)" name="questionform" novalidate  >
 
                               <div ng-repeat="question in questions" class="col-md-11 col-md-offset-1 ques-margin">
                                   <p class="f-16 m-b-0 darkblue-color" ><i class="fa fa-question-circle" aria-hidden="true"></i>&nbsp;Question - {{$index+1}}</p>
                                   <p  class="green-font f-18 m-b-0">{{question.ques}}</p>
 
-                                  <div class="radio f-18">
+                                  <div class="checkbox f-18">
                                     <label>
-                                      <input type="radio" name="q{{$index+1}}" ng-model="submit_answer[$index+1]" value="a" required>
+                                      <input type="checkbox" name="q{{$index+1}}" ng-false-value="0" value="a" ng-model="submit_answer_a[$index+1]" >
                                       {{question.a}}
                                     </label>
                                   </div>
 
-                                  <div class="radio f-18">
+                                  <div class="checkbox f-18">
                                     <label>
-                                      <input type="radio" name="q{{$index+1}}" ng-model="submit_answer[$index+1]" value="b" required>
+                                      <input type="checkbox" name="q{{$index+1}}" ng-false-value="0" value="b"  ng-model="submit_answer_b[$index+1]" >
                                       {{question.b}}
                                     </label>
                                   </div>
 
-                                  <div class="radio f-18">
+                                  <div class="checkbox f-18">
                                     <label>
-                                      <input type="radio" name="q{{$index+1}}" ng-model="submit_answer[$index+1]" value="c" required>
+                                      <input type="checkbox" name="q{{$index+1}}" ng-false-value="0" value="c" ng-model="submit_answer_c[$index+1]" >
                                       {{question.c}}
                                     </label>
                                   </div>
 
-                                  <div class="radio f-18">
+                                  <div class="checkbox f-18">
                                     <label>
-                                      <input type="radio" name="q{{$index+1}}" ng-model="submit_answer[$index+1]" value="d" required>
+                                      <input type="checkbox" name="q{{$index+1}}" ng-false-value="0" value="d" ng-model="submit_answer_d[$index+1]"  >
                                       {{question.d}}
                                     </label>
                                   </div>
@@ -208,43 +210,41 @@
 
                         <div class="row" >
                             <!--<div class="row"  >-->
+                            <form ng-submit="submitanswer(submit_answer_a,submit_answer_b,submit_answer_c,submit_answer_d,questionformValid,2)" name="questionform" novalidate  >
 
-                            <form ng-submit="submitanswer(submit_answer,questionformValid,2)" name="questionform" novalidate  >
-
+                            <!-- <form ng-submit="submitanswer(submit_answer,questionformValid,2)" name="questionform" novalidate  > -->
 
                                 <div ng-repeat="question in questions" class="col-md-11 col-md-offset-1 ques-margin">
                                     <p class="f-16 m-b-0 darkblue-color" ><i class="fa fa-question-circle" aria-hidden="true"></i>&nbsp;Question - {{$index+1}}</p>
                                     <p class="green-font f-18 m-b-0">{{question.ques}}</p>
 
-
-                                    <div class="radio f-18">
+                                    <div class="checkbox f-18">
                                       <label>
-                                        <input type="radio" name="q{{$index+1}}" ng-model="submit_answer[$index+1]" value="a" required>
+                                        <input type="checkbox" name="q{{$index+1}}" ng-false-value="0" value="a" ng-model="submit_answer_a[$index+1]" >
                                         {{question.a}}
                                       </label>
                                     </div>
 
-                                    <div class="radio f-18">
+                                    <div class="checkbox f-18">
                                       <label>
-                                        <input type="radio" name="q{{$index+1}}" ng-model="submit_answer[$index+1]" value="b" required>
+                                        <input type="checkbox" name="q{{$index+1}}" ng-false-value="0" value="b"  ng-model="submit_answer_b[$index+1]" >
                                         {{question.b}}
                                       </label>
                                     </div>
 
-                                    <div class="radio f-18">
+                                    <div class="checkbox f-18">
                                       <label>
-                                        <input type="radio" name="q{{$index+1}}" ng-model="submit_answer[$index+1]" value="c" required>
+                                        <input type="checkbox" name="q{{$index+1}}" ng-false-value="0" value="c" ng-model="submit_answer_c[$index+1]" >
                                         {{question.c}}
                                       </label>
                                     </div>
 
-                                    <div class="radio f-18">
+                                    <div class="checkbox f-18">
                                       <label>
-                                        <input type="radio" name="q{{$index+1}}" ng-model="submit_answer[$index+1]" value="d" required>
+                                        <input type="checkbox" name="q{{$index+1}}" ng-false-value="0" value="d" ng-model="submit_answer_d[$index+1]"  >
                                         {{question.d}}
                                       </label>
                                     </div>
-
 
 
                                     <small style="color: darkred" ng-show="!q{{$index+1}}_response && valid && submitted ">Wrong Answer</small>
@@ -343,39 +343,39 @@
 
                         <div class="row" >
                             <!--<div class="row"  >-->
+                            <form ng-submit="submitanswer(submit_answer_a,submit_answer_b,submit_answer_c,submit_answer_d,questionformValid,3)" name="questionform" novalidate  >
 
-                            <form ng-submit="submitanswer(submit_answer,questionformValid,3)" name="questionform" novalidate  >
+                            <!-- <form ng-submit="submitanswer(submit_answer,questionformValid,3)" name="questionform" novalidate  > -->
 
 
                                 <div ng-repeat="question in questions" class="col-md-11 col-md-offset-1 ques-margin">
                                     <p class="f-16 m-b-0 darkblue-color" ><i class="fa fa-question-circle" aria-hidden="true"></i>&nbsp;Question - {{$index+1}}</p>
                                     <p class="green-font f-18 m-b-0">{{question.ques}}</p>
 
-
-                                    <div class="radio f-18">
+                                    <div class="checkbox f-18">
                                       <label>
-                                        <input type="radio" name="q{{$index+1}}" ng-model="submit_answer[$index+1]" value="a" required>
+                                        <input type="checkbox" name="q{{$index+1}}" ng-false-value="0" value="a" ng-model="submit_answer_a[$index+1]" >
                                         {{question.a}}
                                       </label>
                                     </div>
 
-                                    <div class="radio f-18">
+                                    <div class="checkbox f-18">
                                       <label>
-                                        <input type="radio" name="q{{$index+1}}" ng-model="submit_answer[$index+1]" value="b" required>
+                                        <input type="checkbox" name="q{{$index+1}}" ng-false-value="0" value="b"  ng-model="submit_answer_b[$index+1]" >
                                         {{question.b}}
                                       </label>
                                     </div>
 
-                                    <div class="radio f-18">
+                                    <div class="checkbox f-18">
                                       <label>
-                                        <input type="radio" name="q{{$index+1}}" ng-model="submit_answer[$index+1]" value="c" required>
+                                        <input type="checkbox" name="q{{$index+1}}" ng-false-value="0" value="c" ng-model="submit_answer_c[$index+1]" >
                                         {{question.c}}
                                       </label>
                                     </div>
 
-                                    <div class="radio f-18">
+                                    <div class="checkbox f-18">
                                       <label>
-                                        <input type="radio" name="q{{$index+1}}" ng-model="submit_answer[$index+1]" value="d" required>
+                                        <input type="checkbox" name="q{{$index+1}}" ng-false-value="0" value="d" ng-model="submit_answer_d[$index+1]"  >
                                         {{question.d}}
                                       </label>
                                     </div>

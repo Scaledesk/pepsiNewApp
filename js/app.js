@@ -362,7 +362,20 @@ app.controller('Course1Ctrl', function($scope,$sce, $route, $location, $localSto
     //   return $sce.trustAsResourceUrl(url);
     // }
 
-    $scope.submit_answer = {};
+    // $scope.submit_answer = {};
+    $scope.submit_answer_a = {};
+    $scope.submit_answer_b = {};
+    $scope.submit_answer_c= {};
+    $scope.submit_answer_d = {};
+
+    for (i=1;i<=5;i++)
+    {
+     $scope.submit_answer_a[i]=false;
+     $scope.submit_answer_b[i]=false;
+     $scope.submit_answer_c[i]=false;
+     $scope.submit_answer_d[i]=false;
+    }
+
     $scope.submitted=false;
     $scope.questionformValid=false;
     $scope.valid=false;
@@ -396,197 +409,312 @@ $scope.toggleview=function(){
     };
 
 
-    $scope.submitanswer=function(submit_answer,questionformValid,video){
-
-        $scope.submitted=true;
-
-        if(questionformValid)
-        {
-            $scope.valid=true;
-            $scope.answerdata = {
-
-                emp_id:$localStorage.empid,
-                course_id:"1",
-                video_id: video,
-                q:{
-                    "1":submit_answer[1],
-                    "2":submit_answer[2],
-                    "3":submit_answer[3],
-                    "4":submit_answer[4],
-                    "5":submit_answer[5]
-
-                }
-            };
-
-            $scope.q1_response=true;
-            $scope.q2_response=true;
-            $scope.q3_response=true;
-            $scope.q4_response=true;
-            $scope.q5_response=true;
-
-            pepsiservice.checkAnswers($scope.answerdata).then(function (res) {
-
-                $scope.check_response=res.data;
-
-                $scope.check_ans=res.data.data;
-                $scope.q1_response=$scope.check_ans[0].is_correct;
-                $scope.q2_response=$scope.check_ans[1].is_correct;
-                $scope.q3_response=$scope.check_ans[2].is_correct;
-                $scope.q4_response=$scope.check_ans[3].is_correct;
-                $scope.q5_response=$scope.check_ans[4].is_correct;
-
-               if($scope.check_response.test_clear)
-               {
-                 $scope.showdesc=true;
-                   if(video==1){
-
-                       $scope.compelete_module1 = true;
-                       $localStorage.compelete_module1 = true;
-                       $localStorage.course1.module1 = true;
-                       $localStorage.course1.module1_current = 0;
-
-                       $('#tab2').addClass("active");
-                       $('#tab1').removeClass("active");
-                       $scope.tab = 'second';
-
-                       //$scope.$apply(function () {
-                       //});
-
-                       $scope.vid = document.getElementById('module2');
-                       $scope.id = 'module2';
-
-                       $scope.video_status2();
-
-                       alert('Congrats you have cleared this test module . Now you can explore next module');
+    $scope.submitanswer = function(submit_answer_a,submit_answer_b,submit_answer_c,submit_answer_d,questionformValid,video){
 
 
-                   }else if(video==2){
+       $scope.givenanswer=[]
 
-                       $scope.compelete_module2 = true;
-                       $localStorage.compelete_module2 = true;
-                       $localStorage.course1.module2 = true;
-                       $localStorage.course1.module2_current = 0;
+       for (i=1;i<=5;i++)
+           $scope.givenanswer[i]=[]
 
-                       $('#tab3').addClass("active");
-                       $('#tab2').removeClass("active");
-                       $scope.tab = 'third';
+       for(i=1;i<=5;i++){
+       if(submit_answer_a[i])
+          $scope.givenanswer[i].push("a")
+       if(submit_answer_b[i])
+          $scope.givenanswer[i].push("b")
+       if(submit_answer_c[i])
+          $scope.givenanswer[i].push("c")
+       if(submit_answer_d[i])
+          $scope.givenanswer[i].push("d")
+       }
+
+    $scope.ansformated=[]
+    for(i=1;i<=5;i++) {
+      $scope.ansformated[i]=""
+        for(j=0;j<$scope.givenanswer[i].length;j++)
+            $scope.ansformated[i]=$scope.ansformated[i]+$scope.givenanswer[i][j]+","
+    }
+    // console.log($scope.ansformated[1])
+    // console.log($scope.ansformated[2])
+    // console.log($scope.ansformated[3])
+    // console.log($scope.ansformated[4])
+    // console.log($scope.ansformated[5])
 
 
-                       $scope.vid = document.getElementById('module3');
+    $scope.submitted=true;
 
-                       $scope.id = 'module3';
-                       $scope.video_status2();
-                       alert('Congrats you have cleared this test module . Now you can explore next module');
+    if(questionformValid)
+    {
+        $scope.valid=true;
+        $scope.answerdata = {
+
+            emp_id:$localStorage.empid,
+            course_id:"1",
+            video_id: video,
+            q:{
+                "1":$scope.ansformated[1],
+                "2":$scope.ansformated[2],
+                "3":$scope.ansformated[3],
+                "4":$scope.ansformated[4],
+                "5":$scope.ansformated[5]
+
+            }
+        };
+
+        $scope.q1_response=true;
+        $scope.q2_response=true;
+        $scope.q3_response=true;
+        $scope.q4_response=true;
+        $scope.q5_response=true;
+
+        pepsiservice.checkAnswers($scope.answerdata).then(function (res) {
+
+            $scope.check_response=res.data;
+
+            $scope.check_ans=res.data.data;
+            $scope.q1_response=$scope.check_ans[0].is_correct;
+            $scope.q2_response=$scope.check_ans[1].is_correct;
+            $scope.q3_response=$scope.check_ans[2].is_correct;
+            $scope.q4_response=$scope.check_ans[3].is_correct;
+            $scope.q5_response=$scope.check_ans[4].is_correct;
+
+           if($scope.check_response.test_clear)
+           {
+             $scope.showdesc=true;
+               if(video==1){
+
+                   $scope.compelete_module1 = true;
+                   $localStorage.compelete_module1 = true;
+                   $localStorage.course1.module1 = true;
+                   $localStorage.course1.module1_current = 0;
+
+                   $('#tab2').addClass("active");
+                   $('#tab1').removeClass("active");
+                   $scope.tab = 'second';
 
 
 
-                   }else if(video==3){
+                   $scope.vid = document.getElementById('module2');
+                   $scope.id = 'module2';
 
-                     if($localStorage.c1status)
-                     {
-                         alert('You have already cleared Course1 ,Please generate your certificate');
-                         $location.path('/course');
+                   $scope.video_status2();
 
-                     }
+                   alert('Congrats you have cleared this test module . Now you can explore next module');
 
 
-                     else{
-                         $scope.compelete_module3 = true;
-                         $localStorage.compelete_module3 = true;
-                         $localStorage.course1.module3 = true;
-                         $localStorage.course1.module3_current = 0;
-                         $localStorage.c1status=true;
-                         $rootScope.course1status= $localStorage.c1status;
-                         alert('Congrats you have cleared Course 1 .Please generate your certificate');
-                         $location.path('/course');
+               }else if(video==2){
 
-                     }
+                   $scope.compelete_module2 = true;
+                   $localStorage.compelete_module2 = true;
+                   $localStorage.course1.module2 = true;
+                   $localStorage.course1.module2_current = 0;
 
-                      //  $scope.compelete_module3 = true;
-                      //  $localStorage.compelete_module3 = true;
-                      //  $localStorage.course1.module3 = true;
-                      //  $localStorage.course1.module3_current = 0;
-                       //
-                      //  $('#tab4').addClass("active");
-                      //  $('#tab3').removeClass("active");
-                      //  $scope.tab = 'fourth';
-                       //
-                       //
-                      //  $scope.vid = document.getElementById('module4');
-                       //
-                      //  $scope.id = 'module4';
-                       //
-                      //  $scope.video_status2();
-                      //  alert('Congrats you have cleared this test module . Now you can explore next module');
+                   $('#tab3').addClass("active");
+                   $('#tab2').removeClass("active");
+                   $scope.tab = 'third';
 
-                   }
-                //  else if(video==4){
-                   //
-                  //      $scope.compelete_module4 = true;
-                  //      $localStorage.compelete_module4=true;
-                  //      $localStorage.course1.module4 = true;
-                  //      $localStorage.course1.module4_current = 0;
-                   //
-                  //      $('#tab5').addClass("active");
-                  //      $('#tab4').removeClass("active");
-                  //      $scope.tab = 'fifth';
-                   //
-                   //
-                  //      $scope.vid = document.getElementById('module5');
-                   //
-                  //      $scope.id = 'module5';
-                  //      $scope.video_status2();
-                  //      alert('Congrats you have cleared this test module . Now you can explore next module');
-                   //
-                  //  }else if(video==5){
-                   //
-                  //      if($localStorage.c1status)
-                  //      {
-                  //          alert('You have already cleared Course1 ,Please generate your certificate');
-                  //          $location.path('/course');
-                   //
-                  //      }
-                   //
-                   //
-                  //      else{
-                  //          $scope.compelete_module5 = true;
-                  //          $localStorage.compelete_module5 = true;
-                  //          $localStorage.course1.module5 = true;
-                  //          $localStorage.course1.module5_current = 0;
-                  //          $localStorage.c1status=true;
-                  //          $rootScope.course1status= $localStorage.c1status;
-                  //          alert('Congrats you have cleared Course 1 .Please generate your certificate');
-                  //          $location.path('/course');
-                   //
-                  //      }
-                   //
-                   //
-                  //  }
-               }
 
-                else{
+                   $scope.vid = document.getElementById('module3');
 
-                   alert("Please give all correct answers to clear this test module");
+                   $scope.id = 'module3';
+                   $scope.video_status2();
+                   alert('Congrats you have cleared this test module . Now you can explore next module');
+
+
+
+               }else if(video==3){
+
+                 if($localStorage.c1status)
+                 {
+                     alert('You have already cleared Course1 ,Please generate your certificate');
+                     $location.path('/course');
+
+                 }
+
+
+                 else{
+                     $scope.compelete_module3 = true;
+                     $localStorage.compelete_module3 = true;
+                     $localStorage.course1.module3 = true;
+                     $localStorage.course1.module3_current = 0;
+                     $localStorage.c1status=true;
+                     $rootScope.course1status= $localStorage.c1status;
+                     alert('Congrats you have cleared Course 1 .Please generate your certificate');
+                     $location.path('/course');
+
+                 }
+
+
 
                }
 
+           }
+
+            else{
+
+               alert("Please give all correct answers to clear this test module");
+
+           }
 
 
-            },function(err){
-                console.log("error");
 
-            });
+        },function(err){
+            console.log("error");
 
-
-        }
+        });
 
 
-         else{
-            console.log("Please attempt all the questions");
-        }
+    }
 
 
-    };
+     else{
+        console.log("Please attempt all the questions");
+    }
+
+
+
+    }
+
+
+
+
+
+
+    //
+    // $scope.submitanswer=function(submit_answer,questionformValid,video){
+    //
+    //     $scope.submitted=true;
+    //
+    //     if(questionformValid)
+    //     {
+    //         $scope.valid=true;
+    //         $scope.answerdata = {
+    //
+    //             emp_id:$localStorage.empid,
+    //             course_id:"1",
+    //             video_id: video,
+    //             q:{
+    //                 "1":submit_answer[1],
+    //                 "2":submit_answer[2],
+    //                 "3":submit_answer[3],
+    //                 "4":submit_answer[4],
+    //                 "5":submit_answer[5]
+    //
+    //             }
+    //         };
+    //
+    //         $scope.q1_response=true;
+    //         $scope.q2_response=true;
+    //         $scope.q3_response=true;
+    //         $scope.q4_response=true;
+    //         $scope.q5_response=true;
+    //
+    //         pepsiservice.checkAnswers($scope.answerdata).then(function (res) {
+    //
+    //             $scope.check_response=res.data;
+    //
+    //             $scope.check_ans=res.data.data;
+    //             $scope.q1_response=$scope.check_ans[0].is_correct;
+    //             $scope.q2_response=$scope.check_ans[1].is_correct;
+    //             $scope.q3_response=$scope.check_ans[2].is_correct;
+    //             $scope.q4_response=$scope.check_ans[3].is_correct;
+    //             $scope.q5_response=$scope.check_ans[4].is_correct;
+    //
+    //            if($scope.check_response.test_clear)
+    //            {
+    //              $scope.showdesc=true;
+    //                if(video==1){
+    //
+    //                    $scope.compelete_module1 = true;
+    //                    $localStorage.compelete_module1 = true;
+    //                    $localStorage.course1.module1 = true;
+    //                    $localStorage.course1.module1_current = 0;
+    //
+    //                    $('#tab2').addClass("active");
+    //                    $('#tab1').removeClass("active");
+    //                    $scope.tab = 'second';
+    //
+    //
+    //
+    //                    $scope.vid = document.getElementById('module2');
+    //                    $scope.id = 'module2';
+    //
+    //                    $scope.video_status2();
+    //
+    //                    alert('Congrats you have cleared this test module . Now you can explore next module');
+    //
+    //
+    //                }else if(video==2){
+    //
+    //                    $scope.compelete_module2 = true;
+    //                    $localStorage.compelete_module2 = true;
+    //                    $localStorage.course1.module2 = true;
+    //                    $localStorage.course1.module2_current = 0;
+    //
+    //                    $('#tab3').addClass("active");
+    //                    $('#tab2').removeClass("active");
+    //                    $scope.tab = 'third';
+    //
+    //
+    //                    $scope.vid = document.getElementById('module3');
+    //
+    //                    $scope.id = 'module3';
+    //                    $scope.video_status2();
+    //                    alert('Congrats you have cleared this test module . Now you can explore next module');
+    //
+    //
+    //
+    //                }else if(video==3){
+    //
+    //                  if($localStorage.c1status)
+    //                  {
+    //                      alert('You have already cleared Course1 ,Please generate your certificate');
+    //                      $location.path('/course');
+    //
+    //                  }
+    //
+    //
+    //                  else{
+    //                      $scope.compelete_module3 = true;
+    //                      $localStorage.compelete_module3 = true;
+    //                      $localStorage.course1.module3 = true;
+    //                      $localStorage.course1.module3_current = 0;
+    //                      $localStorage.c1status=true;
+    //                      $rootScope.course1status= $localStorage.c1status;
+    //                      alert('Congrats you have cleared Course 1 .Please generate your certificate');
+    //                      $location.path('/course');
+    //
+    //                  }
+    //
+    //
+    //
+    //                }
+    //
+    //            }
+    //
+    //             else{
+    //
+    //                alert("Please give all correct answers to clear this test module");
+    //
+    //            }
+    //
+    //
+    //
+    //         },function(err){
+    //             console.log("error");
+    //
+    //         });
+    //
+    //
+    //     }
+    //
+    //
+    //      else{
+    //         console.log("Please attempt all the questions");
+    //     }
+    //
+    //
+    // };
 
 
 
@@ -842,7 +970,21 @@ app.controller('Course2Ctrl', function($scope, $location, $localStorage,pepsiser
     $scope.compelete2_module2=$localStorage.compelete2_module2;
     $scope.compelete2_module3=$localStorage.compelete2_module3;
 
-    $scope.submit_answer = {};
+    // $scope.submit_answer = {};
+
+    $scope.submit_answer_a = {};
+    $scope.submit_answer_b = {};
+    $scope.submit_answer_c= {};
+    $scope.submit_answer_d = {};
+
+    for (i=1;i<=10;i++)
+    {
+     $scope.submit_answer_a[i]=false;
+     $scope.submit_answer_b[i]=false;
+     $scope.submit_answer_c[i]=false;
+     $scope.submit_answer_d[i]=false;
+    }
+
     $scope.submitted=false;
     $scope.questionformValid=false;
     $scope.valid=false;
@@ -866,100 +1008,223 @@ app.controller('Course2Ctrl', function($scope, $location, $localStorage,pepsiser
 
     };
 
-    $scope.submitanswer=function(submit_answer,questionformValid){
+    $scope.submitanswer = function(submit_answer_a,submit_answer_b,submit_answer_c,submit_answer_d,questionformValid){
 
-        $scope.submitted=true;
+       $scope.givenanswer=[]
 
-        if(questionformValid)
-        {
-            $scope.valid=true;
-            $scope.answerdata = {
+       for (i=1;i<=10;i++)
+           $scope.givenanswer[i]=[]
 
-                emp_id:$localStorage.empid,
-                course_id:"2",
-                q:{
-                    "1":submit_answer[1],
-                    "2":submit_answer[2],
-                    "3":submit_answer[3],
-                    "4":submit_answer[4],
-                    "5":submit_answer[5],
-                    "6":submit_answer[6],
-                    "7":submit_answer[7],
-                    "8":submit_answer[8],
-                    "9":submit_answer[9],
-                    "10":submit_answer[10]
+       for(i=1;i<=10;i++){
+       if(submit_answer_a[i])
+          $scope.givenanswer[i].push("a")
+       if(submit_answer_b[i])
+          $scope.givenanswer[i].push("b")
+       if(submit_answer_c[i])
+          $scope.givenanswer[i].push("c")
+       if(submit_answer_d[i])
+          $scope.givenanswer[i].push("d")
+       }
 
-                }
-            };
+    $scope.ansformated=[]
+    for(i=1;i<=10;i++) {
+      $scope.ansformated[i]=""
+        for(j=0;j<$scope.givenanswer[i].length;j++)
+            $scope.ansformated[i]=$scope.ansformated[i]+$scope.givenanswer[i][j]+","
+    }
+    console.log($scope.ansformated[1])
+    console.log($scope.ansformated[2])
+    console.log($scope.ansformated[3])
+    console.log($scope.ansformated[4])
+    console.log($scope.ansformated[5])
+
+    $scope.submitted=true;
+
+    if(questionformValid)
+    {
+        $scope.valid=true;
+        $scope.answerdata = {
+
+            emp_id:$localStorage.empid,
+            course_id:"2",
+            q:{
+                "1":$scope.ansformated[1],
+                "2":$scope.ansformated[2],
+                "3":$scope.ansformated[3],
+                "4":$scope.ansformated[4],
+                "5":$scope.ansformated[5],
+                "6":$scope.ansformated[6],
+                "7":$scope.ansformated[7],
+                "8":$scope.ansformated[8],
+                "9":$scope.ansformated[9],
+                "10":$scope.ansformated[10]
+            }
+        };
 
 
-            $scope.q1_response=true;
-            $scope.q2_response=true;
-            $scope.q3_response=true;
-            $scope.q4_response=true;
-            $scope.q5_response=true;
-            $scope.q6_response=true;
-            $scope.q7_response=true;
-            $scope.q8_response=true;
-            $scope.q9_response=true;
-            $scope.q10_response=true;
+        $scope.q1_response=true;
+        $scope.q2_response=true;
+        $scope.q3_response=true;
+        $scope.q4_response=true;
+        $scope.q5_response=true;
+        $scope.q6_response=true;
+        $scope.q7_response=true;
+        $scope.q8_response=true;
+        $scope.q9_response=true;
+        $scope.q10_response=true;
 
-            pepsiservice.checkAnswers($scope.answerdata).then(function (res) {
+        pepsiservice.checkAnswers($scope.answerdata).then(function (res) {
 
-                $scope.check_response=res.data;
+            $scope.check_response=res.data;
 
-                $scope.check_ans=res.data.data;
-                $scope.q1_response=$scope.check_ans[0].is_correct;
-                $scope.q2_response=$scope.check_ans[1].is_correct;
-                $scope.q3_response=$scope.check_ans[2].is_correct;
-                $scope.q4_response=$scope.check_ans[3].is_correct;
-                $scope.q5_response=$scope.check_ans[4].is_correct;
-                $scope.q6_response=$scope.check_ans[5].is_correct;
-                $scope.q7_response=$scope.check_ans[6].is_correct;
-                $scope.q8_response=$scope.check_ans[7].is_correct;
-                $scope.q9_response=$scope.check_ans[8].is_correct;
-                $scope.q10_response=$scope.check_ans[9].is_correct;
+            $scope.check_ans=res.data.data;
+            $scope.q1_response=$scope.check_ans[0].is_correct;
+            $scope.q2_response=$scope.check_ans[1].is_correct;
+            $scope.q3_response=$scope.check_ans[2].is_correct;
+            $scope.q4_response=$scope.check_ans[3].is_correct;
+            $scope.q5_response=$scope.check_ans[4].is_correct;
+            $scope.q6_response=$scope.check_ans[5].is_correct;
+            $scope.q7_response=$scope.check_ans[6].is_correct;
+            $scope.q8_response=$scope.check_ans[7].is_correct;
+            $scope.q9_response=$scope.check_ans[8].is_correct;
+            $scope.q10_response=$scope.check_ans[9].is_correct;
 
-                if($scope.check_response.test_clear)
+            if($scope.check_response.test_clear)
+            {
+
+                if($localStorage.c2status)
                 {
-
-                    if($localStorage.c2status)
-                    {
-                        alert('You have already cleared Course2 ,Please generate your certificate');
-                        $location.path('/course');
-                    }
-
-                    else{
-                        alert('Congrats you have cleared Course 2 . Now you can generate your certificate');
-                        $localStorage.c2status=true;
-                        $rootScope.course2status= $localStorage.c2status;
-                        $location.path('/course');
-                    }
-
+                    alert('You have already cleared Course2 ,Please generate your certificate');
+                    $location.path('/course');
                 }
 
                 else{
-                    alert("Please give all correct answers to clear Course 2");
+                    alert('Congrats you have cleared Course 2 . Now you can generate your certificate');
+                    $localStorage.c2status=true;
+                    $rootScope.course2status= $localStorage.c2status;
+                    $location.path('/course');
                 }
 
+            }
 
-            },function(err){
-                console.log("error");
-
-            });
-
-
-        }
+            else{
+                alert("Please give all correct answers to clear Course 2");
+            }
 
 
-        else{
+        },function(err){
+            console.log("error");
 
-            console.log("Please attempt all the questions");
-
-        }
+        });
 
 
-    };
+    }
+
+
+    else{
+
+        console.log("Please attempt all the questions");
+
+    }
+
+}
+
+
+    //
+    // $scope.submitanswer=function(submit_answer,questionformValid){
+    //
+    //     $scope.submitted=true;
+    //
+    //     if(questionformValid)
+    //     {
+    //         $scope.valid=true;
+    //         $scope.answerdata = {
+    //
+    //             emp_id:$localStorage.empid,
+    //             course_id:"2",
+    //             q:{
+    //                 "1":submit_answer[1],
+    //                 "2":submit_answer[2],
+    //                 "3":submit_answer[3],
+    //                 "4":submit_answer[4],
+    //                 "5":submit_answer[5],
+    //                 "6":submit_answer[6],
+    //                 "7":submit_answer[7],
+    //                 "8":submit_answer[8],
+    //                 "9":submit_answer[9],
+    //                 "10":submit_answer[10]
+    //
+    //             }
+    //         };
+    //
+    //
+    //         $scope.q1_response=true;
+    //         $scope.q2_response=true;
+    //         $scope.q3_response=true;
+    //         $scope.q4_response=true;
+    //         $scope.q5_response=true;
+    //         $scope.q6_response=true;
+    //         $scope.q7_response=true;
+    //         $scope.q8_response=true;
+    //         $scope.q9_response=true;
+    //         $scope.q10_response=true;
+    //
+    //         pepsiservice.checkAnswers($scope.answerdata).then(function (res) {
+    //
+    //             $scope.check_response=res.data;
+    //
+    //             $scope.check_ans=res.data.data;
+    //             $scope.q1_response=$scope.check_ans[0].is_correct;
+    //             $scope.q2_response=$scope.check_ans[1].is_correct;
+    //             $scope.q3_response=$scope.check_ans[2].is_correct;
+    //             $scope.q4_response=$scope.check_ans[3].is_correct;
+    //             $scope.q5_response=$scope.check_ans[4].is_correct;
+    //             $scope.q6_response=$scope.check_ans[5].is_correct;
+    //             $scope.q7_response=$scope.check_ans[6].is_correct;
+    //             $scope.q8_response=$scope.check_ans[7].is_correct;
+    //             $scope.q9_response=$scope.check_ans[8].is_correct;
+    //             $scope.q10_response=$scope.check_ans[9].is_correct;
+    //
+    //             if($scope.check_response.test_clear)
+    //             {
+    //
+    //                 if($localStorage.c2status)
+    //                 {
+    //                     alert('You have already cleared Course2 ,Please generate your certificate');
+    //                     $location.path('/course');
+    //                 }
+    //
+    //                 else{
+    //                     alert('Congrats you have cleared Course 2 . Now you can generate your certificate');
+    //                     $localStorage.c2status=true;
+    //                     $rootScope.course2status= $localStorage.c2status;
+    //                     $location.path('/course');
+    //                 }
+    //
+    //             }
+    //
+    //             else{
+    //                 alert("Please give all correct answers to clear Course 2");
+    //             }
+    //
+    //
+    //         },function(err){
+    //             console.log("error");
+    //
+    //         });
+    //
+    //
+    //     }
+    //
+    //
+    //     else{
+    //
+    //         console.log("Please attempt all the questions");
+    //
+    //     }
+    //
+    //
+    // };
 
 
     if ($localStorage.compelete2_module1 == true) {
