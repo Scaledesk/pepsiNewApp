@@ -11,14 +11,14 @@
                               <div class="log-form">
                                 <form name="login_form" ng-submit="loginemp(user)" novalidate>
                                     <div class="form-group">
-                                        <label for="name"><b style="color:#6ae86f" class="f-20">Name</b></label>
+                                        <label for="name"><b style="color:#fff" class="f-20">Name</b></label>
                                         <input style="color:white"  type="text" id="uname" name="uname" ng-model="user.name" class="form-control" id="name" maxlength="20" required>
                                     </div>
                                     <small style="color: red" ng-show="login_form.uname.$invalid && submitted">Name is required</small>
 
 
                                     <div class="form-group">
-                                        <label for="empid"><b style="color:#6ae86f" class="f-20">Employee ID</b></label>
+                                        <label for="empid"><b style="color:#fff" class="f-20">Employee ID</b></label>
                                         <input style="color:white" type="text" id="eid" name="eid" ng-model="user.empid" class="form-control" id="empid" maxlength="20" required>
                                     </div>
                                     <small style="color:red" ng-show="login_form.eid.$invalid && submitted">Employee ID is required</small>

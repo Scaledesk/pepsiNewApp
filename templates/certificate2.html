@@ -1,6 +1,86 @@
 
 
+<style type="text/css">
 
+	::-moz-selection { /* Code for Firefox */
+    	color: #fff;
+    	background: rgba(13, 82, 156,.5);
+	}
+
+	::selection {
+	    color: #fff;
+	    background: rgba(13, 82, 156,.5);
+	}
+	.certificate-head{
+		text-align: center;
+		font-size: 40px;
+		text-transform: uppercase;
+		display: block;
+		margin-bottom: 0px;
+		font-weight: 900;
+	}
+
+	.certificate-page{
+		position: relative;
+		font-family: 'Open Sans', sans-serif;
+		margin: 0;
+		width: 100%;
+    margin-top: 30px;
+	}
+
+	.cer-head{
+		position: absolute;
+		top: 0;
+		width: 100%;
+		padding:0 50px;
+		text-align:left;
+		border-left: 10px solid #0c529c;
+	}
+.wa{
+  height: 690px;
+}
+	.wa:before{
+				width: 100%;
+        height: auto;
+		position: absolute;
+		content: " ";
+		background-image:url('water.png') ;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+	}
+	.cer-head .cer-size {
+		font-size:18px;
+		font-weight:500;
+		color: #252423;
+		width: 80%;
+		background-color: transparent;
+	}
+
+	.cer-head .cer-size-small {
+		font-size:12px;
+		font-weight:500;
+		color: #252423;
+	}
+
+	.cer-head .cer-size2{
+		display: block;
+		margin-top: 10px;
+		background-color: transparent;
+		font-size:23px;
+		width: 100%;
+		text-transform: capitalize;
+		font-weight:700;
+		color: #000;
+	}
+
+	.cer-head .logo{
+		float: right;
+		width: 250px;
+	}
+
+</style>
 
 <div class="content-section-a">
         <div class="container m-t-20">
@@ -9,7 +89,35 @@
               <button ng-show="course2status"  ng-click="generatecert()" class="btn btn-primary">Download Certificate Course 2</button>
               <div>
                 <div id="exportthis">
-              <p>Course 2 certificate of {{name}} EmployeeID # {{idemp}}<p>
+              <!-- <p>Course 2 certificate of {{name}} EmployeeID # {{idemp}}<p> -->
+              <section class="certificate-page">
+                     <img src="img/water.png" class="wa" />
+
+                       <div class="cer-head">
+                               <span class="heading">CERTIFICATE ID:</span>
+                                     <img src="img/logo.png" class="logo" />
+                       <br /><br /> <br /><br />
+                               <span class="certificate-head">CERTIFICATE OF TRANING</span>
+                       <br /><br />
+                               <span class="cer-size">This is to certify that</span><br>
+                         <span class="cer-size2">USER NAME</span>
+                       <br />
+                               <span class="cer-size">has successfully completed the training programme in</span> <br/>
+                               <span class="cer-size2" >COURSE NAME</span><br>
+                               <span class="cer-size">at</span>
+                       <br/>
+                               <span class="cer-size2" >PEPSICO INDIA HOLDINGS PRIVATE LIMITED GURUGRAM</span>
+                       <br />
+                               <span class="cer-size">an inititive of </span>
+                       <br />
+                               <span class="cer-size2"><b>TREASURY TEAM, PEPSICO</b></span>
+                       <br/><br/>
+                                  <a href="https://pepsico.com" target="_blank">
+                               <span class="cer-size-small"><b>https://pepsico.com</b></span>
+                                   </a>
+                       </div>
+
+                       </section>
                 </div>
               </div>
 

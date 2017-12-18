@@ -27,24 +27,38 @@
   border-top: 13px solid transparent;
   border-left: 10px solid #5A55A3;
 }
-
+.topnav i, .btn-custom span i, .btn-custom i{
+  padding: 0 10px;
+}
 .success-btn{
-  background-color: #4caf50!important;
+  background-color: #022d4e;
+}
+
+.submit-btn .success-btn:hover{
+  background-color: #0a4979;
 }
 
 .logout-btn{
   background-color: rgba(239, 10, 10, 0.54);
   margin-top:10px;
   color:white;
+  transition: all .2s;
+
+}
+
+.logout-btn:hover{
+  background-color: #fff;
+  color: rgba(239, 10, 10, 0.54);
+  transition: all .2s;
 }
 
 .home-msg{
-color: rgb(183, 184, 185);
+color: rgb(255, 255, 255);
 
 }
 
 .bg-nav{
-  background-color: rgb(162, 181, 181);
+  background-color: rgba(4, 46, 77,1);
 }
 
 .bg-blue{
@@ -56,7 +70,7 @@ background-color:rgba(33, 150, 243, 0.05);
 }
 
 .darkblue-color{
-  color:#022d4e!important;
+  color:#fff!important;
 }
 
 .list-group-item.active, .list-group-item.active:hover, .list-group-item.active:focus{
@@ -64,7 +78,7 @@ background-color:rgba(33, 150, 243, 0.05);
 }
 
 .list-group>a.active:after {
-  border-left: 10px solid black!important;
+  border-left: 10px solid #042f4c!important;
 }
 
 .btn-primary:hover{
@@ -72,7 +86,7 @@ background-color:rgba(33, 150, 243, 0.05);
 }
 
 .log-form{
-  background-color: rgba(47, 79, 79, 0.58);
+  background-color: rgba(4, 46, 77,.5);
   padding:20px;
 }
 
@@ -92,7 +106,9 @@ background-color:rgba(33, 150, 243, 0.05);
 .f-18{
   font-size: 18px!important;
 }
-
+.f-18 span{
+  float: right;
+}
 .f-16{
   font-size: 16px!important;
 }

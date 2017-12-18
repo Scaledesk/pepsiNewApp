@@ -39,7 +39,7 @@
                     <div ng-show="tab=='first'">
 
                       <div class="panel panel-default" >
-                        <div class="panel-heading f-18">Course 1 Module 1 <span class="text-success" ng-show="compelete_module1">&nbsp;Completed&nbsp;<i class="fa fa-check-circle" aria-hidden="true"></i></span></div>
+                        <div class="panel-heading f-18">Course 1 - Module 1 <span class="text-success" ng-show="compelete_module1">&nbsp;Completed&nbsp;<i class="fa fa-check-circle" aria-hidden="true"></i></span></div>
                         <div class="panel-body">
 
 
@@ -64,10 +64,10 @@
 
                           <div class="row" >
                             <div class="col-md-9 f-18">
-                              Course 1 Module 1 Questions
+                              Course 1 - Module 1 - Questions
                             </div>
                             <div class="col-md-3 text-right">
-                              <button class="btn btn-primary" ng-click=toggleview() >Description&nbsp;<i class="fa fa-pencil" aria-hidden="true"></i></button>
+                              <button class="btn btn-primary btn-custom" ng-click=toggleview() >Description&nbsp;<i class="fa fa-pencil" aria-hidden="true"></i></button>
                             </div>
 
                           </div>
@@ -83,7 +83,7 @@
 
                               <div ng-repeat="question in questions" class="col-md-11 col-md-offset-1 ques-margin">
                                   <p class="f-16 m-b-0 darkblue-color" ><i class="fa fa-question-circle" aria-hidden="true"></i>&nbsp;Question - {{$index+1}}</p>
-                                  <p  class="green-font f-18 m-b-0">{{question.ques}}</p>
+                                  <p  class="blue-font f-18 m-b-0">{{question.ques}}</p>
 
                                   <div class="checkbox f-18">
                                     <label>
@@ -134,14 +134,14 @@
                         <div class="panel-heading">
                           <div class="row"  >
                             <div class="col-md-6 f-18">
-                              Course 1 Module 1 Description
+                              Course 1 - Module 1 - Description
                             </div>
                             <div class="col-md-4 text-right">
                           <p class="danger" ng-hide="m1ques_active || compelete_module1" >*First watch complete video to give test</p>
                             </div>
                             <div class="col-md-2 text-right">
 
-                              <button class="btn btn-primary" ng-disabled="!(m1ques_active || compelete_module1)" ng-click=toggleview() >
+                              <button class="btn btn-primary btn-custom" ng-disabled="!(m1ques_active || compelete_module1)" ng-click=toggleview() >
 
                                 <span ng-hide="compelete_module1">Give Test&nbsp;<i class="fa fa-pencil-square-o" aria-hidden="true"></i></span>
                                 <span ng-show="compelete_module1" >Show Questions</span>
@@ -174,7 +174,7 @@
                     <div ng-show="tab=='second'">
 
                       <div class="panel panel-default" >
-                        <div class="panel-heading f-18">Course 1 Module 2 <span class="text-success" ng-show="compelete_module2">&nbsp;Completed&nbsp;<i class="fa fa-check-circle" aria-hidden="true"></i></span></div>
+                        <div class="panel-heading f-18">Course 1 - Module 2 <span class="text-success" ng-show="compelete_module2">&nbsp;Completed&nbsp;<i class="fa fa-check-circle" aria-hidden="true"></i></span></div>
                         <div class="panel-body">
 
                         <div class="row">
@@ -196,10 +196,10 @@
 
                         <div class="row" >
                           <div class="col-md-9 f-18">
-                            Course 1 Module 2 Questions
+                            Course 1 - Module 2 - Questions
                           </div>
                           <div class="col-md-3 text-right">
-                            <button class="btn btn-primary " ng-click=toggleview() >Description&nbsp;<i class="fa fa-pencil" aria-hidden="true"></i></button>
+                            <button class="btn btn-primary btn-custom" ng-click=toggleview() >Description&nbsp;<i class="fa fa-pencil" aria-hidden="true"></i></button>
                           </div>
 
                         </div>
@@ -216,7 +216,7 @@
 
                                 <div ng-repeat="question in questions" class="col-md-11 col-md-offset-1 ques-margin">
                                     <p class="f-16 m-b-0 darkblue-color" ><i class="fa fa-question-circle" aria-hidden="true"></i>&nbsp;Question - {{$index+1}}</p>
-                                    <p class="green-font f-18 m-b-0">{{question.ques}}</p>
+                                    <p class="blue-font f-18 m-b-0">{{question.ques}}</p>
 
                                     <div class="checkbox f-18">
                                       <label>
@@ -272,14 +272,14 @@
                  <div class="panel-heading">
                    <div class="row"  >
                      <div class="col-md-6 f-18">
-                       Course 1 Module 2 Description
+                       Course 1 - Module 2 - Description
                      </div>
                      <div class="col-md-4 text-right">
                    <p class="danger" ng-hide="m2ques_active || compelete_module2" >*First watch complete video to give test</p>
                      </div>
                      <div class="col-md-2 text-right">
 
-                       <button class="btn btn-primary" ng-disabled="!(m2ques_active || compelete_module2)" ng-click=toggleview() >
+                       <button class="btn btn-primary btn-custom" ng-disabled="!(m2ques_active || compelete_module2)" ng-click=toggleview() >
                          <span ng-hide="compelete_module2">Give Test&nbsp;<i class="fa fa-pencil-square-o" aria-hidden="true"></i></span>
                          <span ng-show="compelete_module2" >Show Questions</span>
                       </button>
