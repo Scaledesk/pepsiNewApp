@@ -22,9 +22,9 @@
                         <a href="" id="tab2" class="list-group-item text-center  " ng-class="{'disabled':!compelete_module1}" ng-click="tab='second';chkstatus(2);">
                   Module 2
                 </a>
-                        <a href="" id="tab3" class="list-group-item text-center " ng-class="{'disabled':!compelete_module2}" ng-click="tab='third';chkstatus(3);">
+                        <!-- <a href="" id="tab3" class="list-group-item text-center " ng-class="{'disabled':!compelete_module2}" ng-click="tab='third';chkstatus(3);">
                   Module 3
-                </a>
+                </a> -->
                         <!-- <a href="" id="tab4" class="list-group-item text-center" ng-class="{'disabled':!compelete_module3}" ng-click="tab='fourth';chkstatus(4);">
                   Module 4
                 </a>
@@ -46,7 +46,7 @@
                         <div class="row"  >
                             <div class="col-md-9 col-md-offset-1 m-l-0">
                                 <video  class="border" id="module1" name="module1" width="auto" height="500px" poster="http://pepsicodemo.scaledesk.com/pepsico-demo/img/video-preview.png" controls="">
-                                  <!-- <source src="{{videourls}}" type="video/mp4"> -->
+                                    <!-- <source src="{{videourls}}" type="video/mp4"> -->
                                     <!-- <source src="http://52.66.139.3:8023/Working_Capital_1.mp4" type="video/mp4"> -->
                                     <source src="http://52.66.139.3:8023/WorkingCapital2.mp4" type="video/mp4">
 
@@ -303,7 +303,7 @@
 
                     </div>
 
-                    <div ng-show="tab=='third'">
+                    <!-- <div ng-show="tab=='third'">
 
                       <div class="panel panel-default" >
                         <div class="panel-heading f-18">Course 1 Module 3 <span class="text-success" ng-show="course1status">&nbsp;Completed&nbsp;<i class="fa fa-check-circle" aria-hidden="true"></i></span></div>
@@ -342,10 +342,8 @@
                 <div class="panel-body" >
 
                         <div class="row" >
-                            <!--<div class="row"  >-->
                             <form ng-submit="submitanswer(submit_answer_a,submit_answer_b,submit_answer_c,submit_answer_d,questionformValid,3)" name="questionform" novalidate  >
 
-                            <!-- <form ng-submit="submitanswer(submit_answer,questionformValid,3)" name="questionform" novalidate  > -->
 
 
                                 <div ng-repeat="question in questions" class="col-md-11 col-md-offset-1 ques-margin">
@@ -437,7 +435,9 @@
                                     </div>
 
 
-                    </div>
+                    </div> -->
+
+
 <!--
                     <div ng-show="tab=='fourth'">
 

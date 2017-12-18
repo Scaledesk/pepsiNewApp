@@ -103,33 +103,21 @@ app.controller('HomeCtrl', function($scope, $rootScope, $location, $localStorage
 
 
                 $localStorage.compelete_module1 = false;
-                $localStorage.compelete_module2 = false;
-                // $localStorage.compelete_module3 = false;
-                // $localStorage.compelete_module4 = false;
+                // $localStorage.compelete_module2 = false;
+
 
                 $localStorage.compelete2_module1 = false;
                 $localStorage.compelete2_module2 = false;
                 $localStorage.compelete2_module3 = false;
 
 
-                // if ($localStorage.c1_currentmodule == 5) {
-                //     $localStorage.compelete_module1 = true;
-                //     $localStorage.compelete_module2 = true;
-                //     $localStorage.compelete_module3 = true;
-                //     $localStorage.compelete_module4 = true;
-                //
-                // }
-                // else if ($localStorage.c1_currentmodule == 4) {
-                //     $localStorage.compelete_module1 = true;
-                //     $localStorage.compelete_module2 = true;
-                //     $localStorage.compelete_module3 = true;
-                // }
-                if ($localStorage.c1_currentmodule == 3) {
+
+                if ($localStorage.c1_currentmodule == 2) {
                     $localStorage.compelete_module1 = true;
-                    $localStorage.compelete_module2 = true;
+                    // $localStorage.compelete_module2 = true;
                 }
-                else if ($localStorage.c1_currentmodule == 2) {
-                    $localStorage.compelete_module1 = true;
+                else if ($localStorage.c1_currentmodule == 1) {
+                    // $localStorage.compelete_module1 = true;
                 }
                 else {
                 }
@@ -502,27 +490,31 @@ $scope.toggleview=function(){
                    alert('Congrats you have cleared this test module . Now you can explore next module');
 
 
-               }else if(video==2){
+               }
 
-                   $scope.compelete_module2 = true;
-                   $localStorage.compelete_module2 = true;
-                   $localStorage.course1.module2 = true;
-                   $localStorage.course1.module2_current = 0;
+              //  else if(video==2){
+               //
+              //      $scope.compelete_module2 = true;
+              //      $localStorage.compelete_module2 = true;
+              //      $localStorage.course1.module2 = true;
+              //      $localStorage.course1.module2_current = 0;
+               //
+              //      $('#tab3').addClass("active");
+              //      $('#tab2').removeClass("active");
+              //      $scope.tab = 'third';
+               //
+               //
+              //      $scope.vid = document.getElementById('module3');
+               //
+              //      $scope.id = 'module3';
+              //      $scope.video_status2();
+              //      alert('Congrats you have cleared this test module . Now you can explore next module');
+               //
+               //
+               //
+              //  }
 
-                   $('#tab3').addClass("active");
-                   $('#tab2').removeClass("active");
-                   $scope.tab = 'third';
-
-
-                   $scope.vid = document.getElementById('module3');
-
-                   $scope.id = 'module3';
-                   $scope.video_status2();
-                   alert('Congrats you have cleared this test module . Now you can explore next module');
-
-
-
-               }else if(video==3){
+               else if(video==2){
 
                  if($localStorage.c1status)
                  {
@@ -533,12 +525,14 @@ $scope.toggleview=function(){
 
 
                  else{
-                     $scope.compelete_module3 = true;
-                     $localStorage.compelete_module3 = true;
-                     $localStorage.course1.module3 = true;
-                     $localStorage.course1.module3_current = 0;
+                     $scope.compelete_module2 = true;
+                     $localStorage.compelete_module2 = true;
+                     $localStorage.course1.module2 = true;
+                     $localStorage.course1.module2_current = 0;
                      $localStorage.c1status=true;
                      $rootScope.course1status= $localStorage.c1status;
+                    //  $scope.video_status2();
+
                      alert('Congrats you have cleared Course 1 .Please generate your certificate');
                      $location.path('/course');
 
@@ -742,61 +736,39 @@ $scope.toggleview=function(){
     if ($localStorage.compelete_module1 == true) {
         if ($localStorage.compelete_module2 == true) {
 
-             $scope.tab = 'third';
-             $('#tab3').addClass("active");
-             $('#tab2').removeClass("active");
-             $('#tab1').removeClass("active");
-             $scope.vid = document.getElementById('module3');
-             $scope.id = 'module3';
-             $scope.currentTime = $localStorage.course1.module3_current;
-            // if ($localStorage.compelete_module3 == true) {
-            //     // if ($localStorage.compelete_module4 == true) {
-            //     //     $scope.tab = 'fifth';
-            //     //     $('#tab5').addClass("active");
-            //     //     $('#tab1').removeClass("active");
-            //     //     $('#tab2').removeClass("active");
-            //     //     $('#tab3').removeClass("active");
-            //     //     $('#tab4').removeClass("active");
-            //     //     //$scope.getvideourl(5);
-            //     //     $scope.vid = document.getElementById('module5');
-            //     //     $scope.id = 'module5';
-            //     //     $scope.currentTime = $localStorage.course1.module5_current;
-            //     // } else {
-            //     //     $scope.tab = 'fourth';
-            //     //     $('#tab4').addClass("active");
-            //     //     $('#tab3').removeClass("active");
-            //     //     $('#tab2').removeClass("active");
-            //     //     $('#tab1').removeClass("active");
-            //     //     //$scope.getvideourl(4);
-            //     //     $scope.vid = document.getElementById('module4');
-            //     //     $scope.id = 'module4';
-            //     //     $scope.currentTime = $localStorage.course1.module4_current;
-            //     // }
-            // } else {
-            //     $scope.tab = 'third';
-            //     $('#tab3').addClass("active");
-            //     $('#tab2').removeClass("active");
-            //     $('#tab1').removeClass("active");
-            //     //$scope.getvideourl(3);
-            //     $scope.vid = document.getElementById('module3');
-            //     $scope.id = 'module3';
-            //     $scope.currentTime = $localStorage.course1.module3_current;
-            // }
+            //  $scope.tab = 'third';
+            //  $('#tab3').addClass("active");
+            //  $('#tab2').removeClass("active");
+            //  $('#tab1').removeClass("active");
+            //  $scope.vid = document.getElementById('module3');
+            //  $scope.id = 'module3';
+            //  $scope.currentTime = $localStorage.course1.module3_current;
+
+
+
+
+            $scope.tab = 'first';
+            $scope.vid = document.getElementById('module1');
+            $scope.id = 'module1';
+            $scope.currentTime = $localStorage.course1.module1_current;
+            $scope.getquestions(1,1);
+
 
 
 
         } else {
-            $scope.tab = 'second';
-            $('#tab2').addClass("active");
-            $('#tab1').removeClass("active");
-            //$scope.getvideourl(2);
-            $scope.vid = document.getElementById('module2');
-            $scope.id = 'module2';
-            $scope.currentTime = $localStorage.course1.module2_current;
+
+          $scope.tab = 'second';
+          $('#tab2').addClass("active");
+          $('#tab1').removeClass("active");
+          //$scope.getvideourl(2);
+          $scope.vid = document.getElementById('module2');
+          $scope.id = 'module2';
+          $scope.currentTime = $localStorage.course1.module2_current;
+
         }
     } else {
         $scope.tab = 'first';
-        //$scope.getvideourl(1);
         $scope.vid = document.getElementById('module1');
         $scope.id = 'module1';
         $scope.currentTime = $localStorage.course1.module1_current;
@@ -826,13 +798,13 @@ $scope.toggleview=function(){
     // $scope.m3ques_active=false;
     // $scope.m4ques_active=false;
 
-    if($localStorage.c1status){
-        $scope.getquestions(1,3);
-        $scope.m3ques_active=true;
-    }
-    else{
-        $scope.m3ques_active=false;
-    }
+    // if($localStorage.c1status){
+    //     $scope.getquestions(1,3);
+    //     $scope.m3ques_active=true;
+    // }
+    // else{
+    //     $scope.m3ques_active=false;
+    // }
 
     // if($localStorage.c1status){
     //     $scope.getquestions(1,5);
@@ -869,7 +841,21 @@ $scope.toggleview=function(){
                 $scope.getquestions(1,2);
                 $scope.$apply(function () {
                     $scope.m2ques_active=true;
-                    $scope.submit_answer = {};
+                    // $scope.submit_answer = {};
+
+                    $scope.submit_answer_a = {};
+                    $scope.submit_answer_b = {};
+                    $scope.submit_answer_c= {};
+                    $scope.submit_answer_d = {};
+
+                    for (i=1;i<=5;i++)
+                    {
+                     $scope.submit_answer_a[i]=false;
+                     $scope.submit_answer_b[i]=false;
+                     $scope.submit_answer_c[i]=false;
+                     $scope.submit_answer_d[i]=false;
+                    }
+
                     $scope.submitted=false;
                     $scope.questionformValid=false;
                     $scope.valid=false;
@@ -880,43 +866,29 @@ $scope.toggleview=function(){
             }
             $localStorage.course1.module2_current = value.currentTime;
 
-        } else if (id == 'module3') {
+        }
 
-
-            // if ($scope.current == $scope.duration) {
-            //
-            //     $scope.getquestions(1,3);
-            //     $scope.$apply(function () {
-            //         $scope.m3ques_active=true;
-            //         $scope.submit_answer = {};
-            //         $scope.submitted=false;
-            //         $scope.questionformValid=false;
-            //         $scope.valid=false;
-            //
-            //         console.log($scope.m3ques_active);
-            //     });
-            //
-            // }
-            // $localStorage.course1.module3_current = value.currentTime;
-
-
-            if ($scope.current == $scope.duration) {
-
-                $scope.getquestions(1,3);
-                $scope.$apply(function () {
-                    $scope.m3ques_active=true;
-                    $scope.submit_answer = {};
-                    $scope.submitted=false;
-                    $scope.questionformValid=false;
-                    $scope.valid=false;
-                    console.log($scope.m3ques_active);
-                });
-
-            }
-            $localStorage.course1.module3_current = value.currentTime;
-
-
-}
+//          else if (id == 'module3') {
+//
+//
+//
+//             if ($scope.current == $scope.duration) {
+//
+//                 $scope.getquestions(1,3);
+//                 $scope.$apply(function () {
+//                     $scope.m3ques_active=true;
+//                     $scope.submit_answer = {};
+//                     $scope.submitted=false;
+//                     $scope.questionformValid=false;
+//                     $scope.valid=false;
+//                     console.log($scope.m3ques_active);
+//                 });
+//
+//             }
+//             $localStorage.course1.module3_current = value.currentTime;
+//
+//
+// }
 
         //  else if (id == 'module4') {
         //     if ($scope.current == $scope.duration) {
@@ -1032,11 +1004,7 @@ app.controller('Course2Ctrl', function($scope, $location, $localStorage,pepsiser
         for(j=0;j<$scope.givenanswer[i].length;j++)
             $scope.ansformated[i]=$scope.ansformated[i]+$scope.givenanswer[i][j]+","
     }
-    console.log($scope.ansformated[1])
-    console.log($scope.ansformated[2])
-    console.log($scope.ansformated[3])
-    console.log($scope.ansformated[4])
-    console.log($scope.ansformated[5])
+
 
     $scope.submitted=true;
 
