@@ -269,8 +269,9 @@ $scope.generatecert =function(){
                  var docDefinition = {
                      content: [{
                          image: data,
-                         width: 500,
-                     }]
+                         width: 750,
+                     }],
+                     pageOrientation: 'landscape'
                  };
                  pdfMake.createPdf(docDefinition).download("certificate1.pdf");
              }
@@ -298,11 +299,13 @@ $scope.generatecert =function(){
   html2canvas(document.getElementById('exportthis'), {
              onrendered: function (canvas) {
                  var data = canvas.toDataURL();
+          
                  var docDefinition = {
                      content: [{
                          image: data,
-                         width: 500,
-                     }]
+                         width: 750,
+                     }],
+                     pageOrientation: 'landscape'
                  };
                  pdfMake.createPdf(docDefinition).download("certificate2.pdf");
              }
