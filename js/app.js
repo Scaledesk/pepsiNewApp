@@ -299,7 +299,7 @@ $scope.generatecert =function(){
   html2canvas(document.getElementById('exportthis'), {
              onrendered: function (canvas) {
                  var data = canvas.toDataURL();
-          
+
                  var docDefinition = {
                      content: [{
                          image: data,
@@ -1407,7 +1407,9 @@ $scope.video_status1=function(){
 
 app.factory('pepsiservice', function($http,$localStorage,$q){
 
-   var baseUrl= 'http://localhost:8000';
+  //  var baseUrl= 'http://localhost:8000';
+   var baseUrl= 'http://52.66.139.3:8024';
+
 
     var services = {
         doLogin:doLogin,
